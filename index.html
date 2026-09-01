@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ARGOS — Marketing orientado a oportunidades de negócio | Método VQC</title>
+<title>ARGOS | Marketing orientado a oportunidades de negócio</title>
 <meta name="description" content="A ARGOS transforma o digital em canal de geração de demanda e oportunidades comerciais. Método VQC: Volume, Qualificação, Conversão.">
-<meta property="og:title" content="ARGOS — Marketing orientado a oportunidades de negócio">
+<meta property="og:title" content="ARGOS | Marketing orientado a oportunidades de negócio">
 <meta property="og:description" content="Geramos volume, identificamos o que qualifica e escalamos o que converte.">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" as="image" href="assets/retrato.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fontes sem bloquear a primeira pintura: baixa como "print" e promove
@@ -150,30 +150,11 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
 .selo .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted-2);line-height:1.5;max-width:24ch}
 
-/* retrato recortado: o que dava vida ao hero das outras LPs */
-.hero-figura{position:relative;justify-self:end;width:100%;max-width:440px;margin:0}
-.hf-glow{position:absolute;z-index:0;left:50%;top:4%;transform:translateX(-50%);
-  width:116%;aspect-ratio:1/1;border-radius:50%;pointer-events:none;
-  background:radial-gradient(circle at 50% 44%, rgba(26,5,255,.50) 0%, rgba(26,5,255,.22) 32%,
-    rgba(31,239,73,.12) 55%, transparent 72%);filter:blur(8px)}
-.hf-foto{position:relative;z-index:1;width:100%;height:auto;display:block;
-  /* contorno azul/verde: sem ele o terno marinho some no fundo preto */
-  filter:drop-shadow(-15px 4px 22px rgba(26,5,255,.55))
-         drop-shadow(16px 10px 26px rgba(31,239,73,.26))
-         drop-shadow(0 22px 38px rgba(0,0,0,.7));
-  -webkit-mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%);
-  mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%)}
-.hf-chip{position:absolute;z-index:3;left:-5%;top:44%;display:flex;align-items:center;gap:12px;
-  background:rgba(13,13,15,.62);backdrop-filter:blur(16px) saturate(160%);
-  -webkit-backdrop-filter:blur(16px) saturate(160%);
-  border:1px solid rgba(31,239,73,.3);border-radius:14px;padding:14px 20px;
-  box-shadow:0 24px 52px -16px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.1)}
-.hf-nome{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.12;
-  letter-spacing:-.015em;color:var(--fg);max-width:14ch}
-.hf-cta-wrap{position:absolute;z-index:4;left:0;right:0;top:64%;display:flex;
-  justify-content:center;pointer-events:none}
-.hf-cta-wrap .btn{pointer-events:auto;white-space:nowrap;
-  box-shadow:0 26px 58px -14px rgba(0,0,0,.92),0 16px 44px -14px rgba(26,5,255,.85)}
+/* bloco de ação do hero: sóbrio, sem card de vidro e sem retrato */
+.hero-acao{justify-self:end;max-width:400px;width:100%}
+.ha-selo{display:flex;align-items:center;gap:11px;margin-bottom:20px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg);text-shadow:0 2px 12px rgba(0,0,0,.7)}
 
 /* ---------- segmentos ---------- */
 .sec-seg{background:var(--ink);border-top:1px solid var(--line-soft);padding:96px 0}
@@ -221,29 +202,6 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
   radial-gradient(ellipse 60% 50% at 85% 12%, rgba(26,5,255,.16), transparent 60%),
   radial-gradient(ellipse 55% 45% at 8% 88%, rgba(31,239,73,.10), transparent 60%), var(--ink);
   border-top:1px solid var(--line-soft)}
-.funil{margin:0 0 46px;border:1px solid var(--line);border-radius:var(--r);
-  background:#0C0C0E;padding:30px 24px 0;overflow:hidden}
-.funil svg{width:100%;height:auto;display:block}
-.funil .ltr{font-family:var(--display);font-weight:900;font-size:40px;letter-spacing:-.03em}
-.funil .nm{font-family:var(--mono);font-size:13px;letter-spacing:.18em;fill:#FAFAFA}
-.funil .ds{font-family:var(--body);font-size:13px;font-weight:300;fill:#A6A6A6}
-.funil figcaption{display:flex;flex-wrap:wrap;gap:8px 26px;padding:20px 16px 24px;
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted-2);border-top:1px solid var(--line);margin-top:22px}
-.funil figcaption b{color:var(--green);font-weight:500}
-.funil-mob{display:none}
-.fm{position:relative;padding:16px 18px;border-radius:var(--r-sm);overflow:hidden;margin-bottom:8px}
-.fm i{position:absolute;left:0;top:0;bottom:0;display:block;opacity:.18}
-.fm.v i{background:linear-gradient(90deg,#1A05FF,#3B36E8)}
-.fm.q i{background:linear-gradient(90deg,#3B36E8,#2CA95F)}
-.fm.c i{background:linear-gradient(90deg,#2CA95F,#1FEF49)}
-.fm b{position:relative;font-family:var(--display);font-weight:900;font-size:22px;
-  line-height:1;margin-right:12px;float:left}
-.fm.v b{color:var(--blue-lt)} .fm.q b{color:#5CB878} .fm.c b{color:var(--green)}
-.fm span{position:relative;display:block;overflow:hidden;font-size:13px;font-weight:300;
-  color:var(--muted);line-height:1.45}
-.fm em{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--fg);margin-bottom:3px}
 .vqc-stack{display:flex;flex-direction:column;gap:20px}
 .vqc-block{display:grid;grid-template-columns:150px 1fr;gap:44px;background:rgba(255,255,255,.028);
   border:1px solid var(--line);border-radius:var(--r);padding:44px;position:relative;overflow:hidden;
@@ -275,30 +233,15 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
 .metodo-fecho p span{display:block}
 .metodo-fecho p .hl{color:var(--green)}
 
-/* ---------- 03 cases ---------- */
-.sec-cases{background:var(--ink-2);border-top:1px solid var(--line-soft)}
-.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.case{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
-  transition:border-color .3s ease,transform .3s ease}
-.case:hover{border-color:rgba(31,239,73,.35);transform:translateY(-4px)}
-.case-top{padding:32px 36px;border-bottom:1px solid var(--line);background:var(--grad-soft)}
-.case-top h3{font-size:24px;font-weight:800;line-height:1.1;margin-bottom:10px}
-.case-seg{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
-.case-body{padding:32px 36px}
-.case-item + .case-item{margin-top:24px;padding-top:24px;border-top:1px dashed var(--line)}
-.case-lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted-2);margin-bottom:10px}
-.case-item p{font-size:16px;font-weight:300;color:var(--muted);line-height:1.62}
-.case-item p.ph{color:var(--muted-2);font-style:italic;border-left:2px solid var(--line);padding-left:14px}
-
 /* ---------- 04 para quem ---------- */
 .sec-fit{background:radial-gradient(ellipse 50% 60% at 90% 40%, rgba(26,5,255,.13), transparent 62%), var(--ink);
   border-top:1px solid var(--line-soft)}
 .fit-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .fit-list li{display:flex;gap:16px;align-items:flex-start;background:var(--card);
-  border:1px solid var(--line);border-radius:var(--r-sm);padding:22px 26px;
-  font-size:16px;font-weight:300;color:var(--muted);line-height:1.55;
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:24px 26px;
+  font-size:16px;font-weight:300;color:var(--muted);line-height:1.6;
   transition:border-color .25s ease,transform .25s ease,background .25s ease}
+.fit-list li > span:last-child{flex:1;min-width:0}
 .fit-list li:hover{border-color:rgba(31,239,73,.4);transform:translateX(5px);background:var(--card-2)}
 .fit-list li b{color:var(--fg);font-weight:500}
 .fit-check{width:22px;height:22px;border-radius:6px;flex-shrink:0;margin-top:1px;
@@ -423,13 +366,8 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   .hero h1{max-width:100%;font-size:clamp(28px,7.2vw,40px)}
   .hero h1 .l1{font-size:.62em}
   .hero-sub{max-width:100%;font-size:16.5px}
-  .hero-figura{max-width:320px;justify-self:center;margin:0 auto}
-  .hf-chip{left:-12px;top:42%;padding:11px 14px;border-radius:12px;gap:10px}
-  .hf-nome{font-size:16px;max-width:12ch}
-  .hf-cta-wrap{top:66%}
-  .hf-cta-wrap .btn{font-size:12.5px;padding:14px 18px}
-  .hf-glow{width:150%}
-  .sec-seg{padding:60px 0}
+  .hero-acao{max-width:100%;justify-self:stretch}
+    .sec-seg{padding:60px 0}
   .seg-grid{grid-template-columns:1fr;gap:14px;margin-top:30px}
   .seg img{height:200px}
   .seg-txt{padding:20px}
@@ -444,7 +382,7 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   .lead{font-size:16.5px;margin-bottom:34px}
   .kick{font-size:10.5px}
 
-  .prob-grid,.diag-grid,.cases-grid,.cta-wrap,.fit-list{grid-template-columns:1fr}
+  .prob-grid,.diag-grid,.cta-wrap,.fit-list{grid-template-columns:1fr}
   .prob-grid{gap:12px}
   .diag-grid{gap:12px}
   .prob-card{padding:26px 22px}
@@ -452,19 +390,12 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   .prob-fecho{padding:24px 22px}
   .prob-fecho .destaque{font-size:18px}
 
-  .funil{margin-bottom:30px;padding:16px 14px 0}
-  .funil svg{display:none}
-  .funil-mob{display:block}
-  .funil figcaption{padding:14px 6px 18px;font-size:10px;letter-spacing:.08em;
-    flex-direction:column;gap:6px;margin-top:16px}
-  .vqc-block{grid-template-columns:1fr;gap:18px;padding:28px 22px}
+    .vqc-block{grid-template-columns:1fr;gap:18px;padding:28px 22px}
   .vqc-letra{font-size:66px}
   .vqc-block p{font-size:15.5px}
   .metodo-fecho{grid-template-columns:1fr;gap:24px;padding:26px 22px}
   .metodo-fecho .btn{width:100%}
 
-  .case-top,.case-body{padding:26px 22px}
-  .case-top h3{font-size:21px}
 
   .fit-list li{padding:18px 20px;font-size:15.5px}
   .manifesto{padding:28px 22px;margin-top:32px}
@@ -490,7 +421,7 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
 
 <header>
   <div class="brand">
-    <a class="brand-lk" href="#topo" aria-label="ARGOS — início" style="display:flex;align-items:center;gap:12px">
+    <a class="brand-lk" href="#topo" aria-label="ARGOS, início" style="display:flex;align-items:center;gap:12px">
       <img src="assets/argos-mark.png" alt="" width="223" height="420">
       <span class="brand-name">ARGOS</span>
     </a>
@@ -529,22 +460,11 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
         </div>
       </div>
 
-      <figure class="hero-figura rv">
-        <span class="hf-glow" aria-hidden="true"></span>
-        <picture>
-          <source srcset="assets/retrato.webp" type="image/webp">
-          <img class="hf-foto" src="assets/retrato.png" alt="Especialista da ARGOS"
-               width="868" height="1160" fetchpriority="high" decoding="async">
-        </picture>
-        <figcaption class="hf-chip">
-          <i class="hc-dot"></i>
-          <strong class="hf-nome">Fale com um especialista</strong>
-        </figcaption>
-        <div class="hf-cta-wrap">
-          <a href="form.html" class="btn btn-grad">Quero meu diagnóstico <span class="arw">→</span></a>
-        </div>
+      <aside class="hero-acao rv">
+        <div class="ha-selo"><i class="hc-dot"></i> Fale com um especialista da ARGOS</div>
+        <a href="form.html" class="btn btn-grad btn-full">Quero meu diagnóstico <span class="arw">→</span></a>
         <p class="hc-note">Sem compromisso de contratação.<br>Resposta pelo WhatsApp corporativo.</p>
-      </figure>
+      </aside>
     </div>
 
     <div class="hero-selos rv">
@@ -610,7 +530,7 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
     <div class="kick rv"><b>01</b> &nbsp;·&nbsp; O cenário</div>
     <h2 class="sec rv">O problema nem sempre é falta de clientes.</h2>
     <p class="lead rv">
-      Muitas vezes, sua empresa simplesmente <b>não está capturando a demanda certa — ou não consegue
+      Muitas vezes, sua empresa simplesmente <b>não está capturando a demanda certa, ou não consegue
       transformar essa demanda em oportunidades reais de negócio.</b> Talvez hoje sua empresa enfrente
       algum desses cenários:
     </p>
@@ -658,61 +578,7 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
     <h2 class="sec wide rv">Não basta gerar atenção. É preciso entender qual demanda pode virar negócio.</h2>
     <p class="lead rv">O <b>Método VQC</b> conecta marketing, dados e comercial através de três etapas.</p>
 
-    <figure class="funil rv" aria-label="Funil do Método VQC: o volume de demanda vai sendo filtrado até as oportunidades que convertem">
-      <svg viewBox="0 0 1200 250" role="img" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="gv" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"   stop-color="#1A05FF"/><stop offset="1" stop-color="#3B36E8"/>
-          </linearGradient>
-          <linearGradient id="gq" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"   stop-color="#3B36E8"/><stop offset="1" stop-color="#2CA95F"/>
-          </linearGradient>
-          <linearGradient id="gc" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"   stop-color="#2CA95F"/><stop offset="1" stop-color="#1FEF49"/>
-          </linearGradient>
-        </defs>
 
-        <!-- o funil: a altura cai de 200 para 60, o estreitamento é o próprio argumento -->
-        <path d="M40,25 L400,25 L400,225 L40,225 Z"      fill="url(#gv)" opacity=".16"/>
-        <path d="M400,55 L780,55 L780,195 L400,195 Z"    fill="url(#gq)" opacity=".20"/>
-        <path d="M780,95 L1160,95 L1160,155 L780,155 Z"  fill="url(#gc)" opacity=".26"/>
-        <path d="M40,25 L400,25 L400,55 L780,55 L780,95 L1160,95 L1160,155 L780,155 L780,195 L400,195 L400,225 L40,225 Z"
-              fill="none" stroke="#292929" stroke-width="1"/>
-
-        <line x1="400" y1="25"  x2="400" y2="225" stroke="#292929" stroke-width="1"/>
-        <line x1="780" y1="55"  x2="780" y2="195" stroke="#292929" stroke-width="1"/>
-
-        <g class="et">
-          <text x="70"  y="105" class="ltr" fill="#6A57FF">V</text>
-          <text x="70"  y="138" class="nm">VOLUME</text>
-          <text x="70"  y="163" class="ds">Geramos demanda</text>
-          <text x="70"  y="184" class="ds">e dados de mercado</text>
-
-          <text x="430" y="115" class="ltr" fill="#4CA078">Q</text>
-          <text x="430" y="148" class="nm">QUALIFICAÇÃO</text>
-          <text x="430" y="173" class="ds">Separamos o que tem</text>
-          <text x="430" y="194" class="ds">aderência ao negócio</text>
-
-          <text x="810" y="127" class="ltr" fill="#1FEF49">C</text>
-          <text x="810" y="160" class="nm">CONVERSÃO</text>
-          <text x="810" y="185" class="ds">Escalamos o que gera</text>
-          <text x="810" y="206" class="ds">oportunidade real</text>
-        </g>
-      </svg>
-      <!-- No celular o SVG horizontal cairia para 305px de largura e as
-           letras virariam 10px. Abaixo de 900px entra esta versao
-           empilhada, onde o estreitamento vira largura de barra. -->
-      <div class="funil-mob" aria-hidden="true">
-        <div class="fm v"><i style="width:100%"></i><b>V</b><span><em>Volume</em>Geramos demanda e dados de mercado</span></div>
-        <div class="fm q"><i style="width:70%"></i><b>Q</b><span><em>Qualificação</em>Separamos o que tem aderência ao negócio</span></div>
-        <div class="fm c"><i style="width:42%"></i><b>C</b><span><em>Conversão</em>Escalamos o que gera oportunidade real</span></div>
-      </div>
-      <figcaption>
-        <span>Volume gera dados</span>
-        <span>A qualificação separa o que tem aderência</span>
-        <b>A conversão concentra o investimento</b>
-      </figcaption>
-    </figure>
 
     <div class="vqc-stack">
       <article class="vqc-block v rv">
@@ -721,7 +587,7 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
         <div>
           <div class="vqc-tit">Volume</div>
           <h3>Geramos demanda.</h3>
-          <p>Estruturamos campanhas e canais para aumentar a presença da sua empresa diante das pessoas que estão procurando — ou podem precisar — daquilo que você oferece.</p>
+          <p>Estruturamos campanhas e canais para aumentar a presença da sua empresa diante das pessoas que estão procurando, ou podem precisar, daquilo que você oferece.</p>
           <p>O objetivo inicial é gerar dados, alcance e oportunidades suficientes para entender melhor o comportamento do mercado.</p>
         </div>
       </article>
@@ -760,91 +626,31 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   </div>
 </section>
 
-<!-- ======================= 03 · CASES ======================= -->
-<section class="sec-cases" id="cases">
-  <div class="mesh"></div>
-  <div class="container">
-    <div class="kick rv"><b>03</b> &nbsp;·&nbsp; Cases ARGOS</div>
-    <h2 class="sec rv">Estratégia que sai do relatório e chega ao comercial.</h2>
-    <p class="lead rv">Empresas que passaram a tratar o digital não apenas como divulgação, mas como um canal estratégico de aquisição.</p>
 
-    <div class="cases-grid">
-      <article class="case rv">
-        <div class="case-top">
-          <h3>[Case 01 — nome da empresa]</h3>
-          <div class="case-seg">[Inserir segmento]</div>
-        </div>
-        <div class="case-body">
-          <div class="case-item">
-            <div class="case-lab">Desafio</div>
-            <p class="ph">[Inserir principal cenário enfrentado pela empresa antes da ARGOS.]</p>
-          </div>
-          <div class="case-item">
-            <div class="case-lab">Estratégia</div>
-            <p>Estruturamos a geração de demanda, acompanhamos o comportamento das oportunidades e utilizamos os dados comerciais para otimizar continuamente as campanhas.</p>
-          </div>
-          <div class="case-item">
-            <div class="case-lab">Resultado</div>
-            <p class="ph">[Inserir resultado validado do projeto.]</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="case rv">
-        <div class="case-top">
-          <h3>[Case 02 — nome da empresa]</h3>
-          <div class="case-seg">[Inserir segmento]</div>
-        </div>
-        <div class="case-body">
-          <div class="case-item">
-            <div class="case-lab">Desafio</div>
-            <p class="ph">[Inserir principal cenário enfrentado pela empresa antes da ARGOS.]</p>
-          </div>
-          <div class="case-item">
-            <div class="case-lab">Estratégia</div>
-            <p>Reestruturamos a aquisição digital e conectamos os dados do marketing às oportunidades que realmente avançavam no processo comercial.</p>
-          </div>
-          <div class="case-item">
-            <div class="case-lab">Resultado</div>
-            <p class="ph">[Inserir resultado validado do projeto.]</p>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- ======================= 04 · PARA QUEM É ======================= -->
 <section class="sec-fit" id="paraquem">
   <div class="mesh"></div>
   <div class="container">
-    <div class="kick rv"><b>04</b> &nbsp;·&nbsp; Para quem é</div>
+    <div class="kick rv"><b>03</b> &nbsp;·&nbsp; Para quem é</div>
     <h2 class="sec wide rv">O Método VQC faz sentido para sua empresa se…</h2>
 
     <ul class="fit-list">
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Sua empresa já possui um <b>produto ou serviço validado</b>, mas precisa gerar mais oportunidades.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Você investe em marketing, mas sente que <b>os resultados poderiam ser melhores</b>.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Seu comercial precisa receber <b>mais contatos com potencial de compra</b>.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Você recebe leads, mas <b>muitos chegam sem perfil</b>.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Você não consegue identificar claramente <b>quais campanhas estão contribuindo para as vendas</b>.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Sua empresa depende excessivamente de indicação, prospecção manual ou relacionamento para gerar novos clientes.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Você quer transformar o digital em um <b>canal mais consistente e previsível de aquisição</b>.</li>
-      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
-        Você deseja tomar decisões de marketing com base em <b>dados comerciais</b>, não apenas métricas de vaidade.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Sua empresa já possui um <b>produto ou serviço validado</b>, mas precisa gerar mais oportunidades.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Você investe em marketing, mas sente que <b>os resultados poderiam ser melhores</b>.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Seu comercial precisa receber <b>mais contatos com potencial de compra</b>.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Você recebe leads, mas <b>muitos chegam sem perfil</b>.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Você não consegue identificar claramente <b>quais campanhas estão contribuindo para as vendas</b>.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Sua empresa depende excessivamente de indicação, prospecção manual ou relacionamento para gerar novos clientes.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Você quer transformar o digital em um <b>canal mais consistente e previsível de aquisição</b>.</span></li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span><span>Você deseja tomar decisões de marketing com base em <b>dados comerciais</b>, não apenas métricas de vaidade.</span></li>
     </ul>
 
     <div class="manifesto rv">
       <h3>Marketing não deve terminar no clique.</h3>
       <div class="nem">Nem no acesso.<br>Nem no formulário.<br>Nem no lead.</div>
       <div class="frase">Ele precisa contribuir para gerar oportunidades de negócio.</div>
-      <p>O Método VQC existe para aproximar marketing e comercial e construir uma visão mais clara sobre toda a jornada — <b>da primeira interação até a conversão.</b></p>
+      <p>O Método VQC existe para aproximar marketing e comercial e construir uma visão mais clara sobre toda a jornada, <b>da primeira interação até a conversão.</b></p>
     </div>
   </div>
 </section>
@@ -853,7 +659,7 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
 <section class="sec-diag" id="diagnostico-info">
   <div class="mesh"></div>
   <div class="container">
-    <div class="kick rv"><b>05</b> &nbsp;·&nbsp; Diagnóstico ARGOS</div>
+    <div class="kick rv"><b>04</b> &nbsp;·&nbsp; Diagnóstico ARGOS</div>
     <h2 class="sec rv">Descubra onde sua empresa está perdendo oportunidades.</h2>
     <p class="lead rv">
       Antes de simplesmente aumentar o investimento em mídia ou iniciar novas campanhas, buscamos
@@ -995,15 +801,7 @@ if ('IntersectionObserver' in window) document.documentElement.className += ' re
       .fromTo('.hero-sub', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.45,stagger:0.07}, '-=0.42')
       .fromTo('.vqc-rail', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.45}, '-=0.32')
       .fromTo('.vqc-rail .bar', {scaleX:0}, {scaleX:1,duration:0.50,stagger:0.08,ease:'power2.out'}, '-=0.30')
-      .fromTo('.hero-figura', {autoAlpha:0,y:24}, {autoAlpha:1,y:0,duration:0.60}, '-=0.70')
-      .fromTo('.hf-chip', {autoAlpha:0,x:-14}, {autoAlpha:1,x:0,duration:0.40}, '-=0.32')
-      .fromTo('.hf-cta-wrap', {autoAlpha:0,y:14}, {autoAlpha:1,y:0,duration:0.40}, '-=0.24')
-      .add(function(){
-        /* flutuar de leve; nos involucros, nunca no botao — assim o
-           transform do :hover continua livre */
-        gsap.to('.hf-chip',     { y:-8, duration:3.2, ease:'sine.inOut', yoyo:true, repeat:-1 });
-        gsap.to('.hf-cta-wrap', { y:-6, duration:2.6, ease:'sine.inOut', yoyo:true, repeat:-1, delay:0.35 });
-      })
+      .fromTo('.hero-acao', {autoAlpha:0,y:20}, {autoAlpha:1,y:0,duration:0.55}, '-=0.60')
       .fromTo('.hero-selos', {autoAlpha:0,y:16}, {autoAlpha:1,y:0,duration:0.50}, '-=0.40')
       .fromTo('.hero-selos .selo', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.40,stagger:0.08}, '-=0.38');
 
