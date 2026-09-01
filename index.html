@@ -187,13 +187,29 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
   radial-gradient(ellipse 60% 50% at 85% 12%, rgba(26,5,255,.16), transparent 60%),
   radial-gradient(ellipse 55% 45% at 8% 88%, rgba(31,239,73,.10), transparent 60%), var(--ink);
   border-top:1px solid var(--line-soft)}
-.malha-vqc{margin:0 0 46px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
-  position:relative;background:#0C0C0E}
-.malha-vqc img{width:100%;height:auto;display:block;opacity:.92}
-.malha-vqc figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 30px;
-  background:linear-gradient(to top, rgba(10,10,10,.94), transparent);
-  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.malha-vqc figcaption b{color:var(--green);font-weight:500}
+.funil{margin:0 0 46px;border:1px solid var(--line);border-radius:var(--r);
+  background:#0C0C0E;padding:30px 24px 0;overflow:hidden}
+.funil svg{width:100%;height:auto;display:block}
+.funil .ltr{font-family:var(--display);font-weight:900;font-size:40px;letter-spacing:-.03em}
+.funil .nm{font-family:var(--mono);font-size:13px;letter-spacing:.18em;fill:#FAFAFA}
+.funil .ds{font-family:var(--body);font-size:13px;font-weight:300;fill:#A6A6A6}
+.funil figcaption{display:flex;flex-wrap:wrap;gap:8px 26px;padding:20px 16px 24px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted-2);border-top:1px solid var(--line);margin-top:22px}
+.funil figcaption b{color:var(--green);font-weight:500}
+.funil-mob{display:none}
+.fm{position:relative;padding:16px 18px;border-radius:var(--r-sm);overflow:hidden;margin-bottom:8px}
+.fm i{position:absolute;left:0;top:0;bottom:0;display:block;opacity:.18}
+.fm.v i{background:linear-gradient(90deg,#1A05FF,#3B36E8)}
+.fm.q i{background:linear-gradient(90deg,#3B36E8,#2CA95F)}
+.fm.c i{background:linear-gradient(90deg,#2CA95F,#1FEF49)}
+.fm b{position:relative;font-family:var(--display);font-weight:900;font-size:22px;
+  line-height:1;margin-right:12px;float:left}
+.fm.v b{color:var(--blue-lt)} .fm.q b{color:#5CB878} .fm.c b{color:var(--green)}
+.fm span{position:relative;display:block;overflow:hidden;font-size:13px;font-weight:300;
+  color:var(--muted);line-height:1.45}
+.fm em{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--fg);margin-bottom:3px}
 .vqc-stack{display:flex;flex-direction:column;gap:20px}
 .vqc-block{display:grid;grid-template-columns:150px 1fr;gap:44px;background:rgba(255,255,255,.028);
   border:1px solid var(--line);border-radius:var(--r);padding:44px;position:relative;overflow:hidden;
@@ -389,8 +405,11 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   .prob-fecho{padding:24px 22px}
   .prob-fecho .destaque{font-size:18px}
 
-  .malha-vqc{margin-bottom:30px}
-  .malha-vqc figcaption{padding:16px 18px;font-size:10.5px;letter-spacing:.1em}
+  .funil{margin-bottom:30px;padding:16px 14px 0}
+  .funil svg{display:none}
+  .funil-mob{display:block}
+  .funil figcaption{padding:14px 6px 18px;font-size:10px;letter-spacing:.08em;
+    flex-direction:column;gap:6px;margin-top:16px}
   .vqc-block{grid-template-columns:1fr;gap:18px;padding:28px 22px}
   .vqc-letra{font-size:66px}
   .vqc-block p{font-size:15.5px}
@@ -548,10 +567,60 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
     <h2 class="sec wide rv">Não basta gerar atenção. É preciso entender qual demanda pode virar negócio.</h2>
     <p class="lead rv">O <b>Método VQC</b> conecta marketing, dados e comercial através de três etapas.</p>
 
-    <figure class="malha-vqc rv">
-      <img src="assets/vqc-malha.webp" alt="Representação do funil VQC: muitos sinais de demanda à esquerda, em azul, afunilando até as oportunidades convertidas à direita, em verde."
-           width="1400" height="700" loading="lazy" decoding="async">
-      <figcaption>Volume gera dados &nbsp;·&nbsp; a qualificação separa o que tem aderência &nbsp;·&nbsp; <b>a conversão concentra o investimento</b></figcaption>
+    <figure class="funil rv" aria-label="Funil do Método VQC: o volume de demanda vai sendo filtrado até as oportunidades que convertem">
+      <svg viewBox="0 0 1200 250" role="img" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="gv" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#1A05FF"/><stop offset="1" stop-color="#3B36E8"/>
+          </linearGradient>
+          <linearGradient id="gq" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#3B36E8"/><stop offset="1" stop-color="#2CA95F"/>
+          </linearGradient>
+          <linearGradient id="gc" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#2CA95F"/><stop offset="1" stop-color="#1FEF49"/>
+          </linearGradient>
+        </defs>
+
+        <!-- o funil: a altura cai de 200 para 60, o estreitamento é o próprio argumento -->
+        <path d="M40,25 L400,25 L400,225 L40,225 Z"      fill="url(#gv)" opacity=".16"/>
+        <path d="M400,55 L780,55 L780,195 L400,195 Z"    fill="url(#gq)" opacity=".20"/>
+        <path d="M780,95 L1160,95 L1160,155 L780,155 Z"  fill="url(#gc)" opacity=".26"/>
+        <path d="M40,25 L400,25 L400,55 L780,55 L780,95 L1160,95 L1160,155 L780,155 L780,195 L400,195 L400,225 L40,225 Z"
+              fill="none" stroke="#292929" stroke-width="1"/>
+
+        <line x1="400" y1="25"  x2="400" y2="225" stroke="#292929" stroke-width="1"/>
+        <line x1="780" y1="55"  x2="780" y2="195" stroke="#292929" stroke-width="1"/>
+
+        <g class="et">
+          <text x="70"  y="105" class="ltr" fill="#6A57FF">V</text>
+          <text x="70"  y="138" class="nm">VOLUME</text>
+          <text x="70"  y="163" class="ds">Geramos demanda</text>
+          <text x="70"  y="184" class="ds">e dados de mercado</text>
+
+          <text x="430" y="115" class="ltr" fill="#4CA078">Q</text>
+          <text x="430" y="148" class="nm">QUALIFICAÇÃO</text>
+          <text x="430" y="173" class="ds">Separamos o que tem</text>
+          <text x="430" y="194" class="ds">aderência ao negócio</text>
+
+          <text x="810" y="127" class="ltr" fill="#1FEF49">C</text>
+          <text x="810" y="160" class="nm">CONVERSÃO</text>
+          <text x="810" y="185" class="ds">Escalamos o que gera</text>
+          <text x="810" y="206" class="ds">oportunidade real</text>
+        </g>
+      </svg>
+      <!-- No celular o SVG horizontal cairia para 305px de largura e as
+           letras virariam 10px. Abaixo de 900px entra esta versao
+           empilhada, onde o estreitamento vira largura de barra. -->
+      <div class="funil-mob" aria-hidden="true">
+        <div class="fm v"><i style="width:100%"></i><b>V</b><span><em>Volume</em>Geramos demanda e dados de mercado</span></div>
+        <div class="fm q"><i style="width:70%"></i><b>Q</b><span><em>Qualificação</em>Separamos o que tem aderência ao negócio</span></div>
+        <div class="fm c"><i style="width:42%"></i><b>C</b><span><em>Conversão</em>Escalamos o que gera oportunidade real</span></div>
+      </div>
+      <figcaption>
+        <span>Volume gera dados</span>
+        <span>A qualificação separa o que tem aderência</span>
+        <b>A conversão concentra o investimento</b>
+      </figcaption>
     </figure>
 
     <div class="vqc-stack">
