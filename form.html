@@ -637,7 +637,9 @@ tela.addEventListener('click', function(ev){
     }
     limparErro();
     salvar();
-    setTimeout(seguir, 260);       // avanço automático, como na referência
+    /* Sem avanco automatico: marcar a opcao nao passa de tela. A pessoa
+       confirma no botao (ou no Enter). Evita o clique acidental levar
+       adiante uma resposta que ela ainda estava lendo. */
     return;
   }
   if (ev.target.closest('#seguir'))  return seguir();
