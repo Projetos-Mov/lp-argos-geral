@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/retrato.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fontes sem bloquear a primeira pintura: baixa como "print" e promove
@@ -43,7 +43,7 @@ img{max-width:100%;display:block}
 h1,h2,h3,h4,.display{font-family:var(--display);font-weight:800;line-height:1.04;letter-spacing:-.025em}
 
 .container{max-width:var(--max);margin:0 auto;padding:0 32px;position:relative;z-index:2}
-section{padding:118px 0;position:relative}
+section{padding:140px 0;position:relative}
 .grad-text{background:var(--grad-txt);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent}
 .green{color:var(--green)}
@@ -61,9 +61,9 @@ section{padding:118px 0;position:relative}
   gap:14px;margin-bottom:20px}
 .kick::before{content:'';width:34px;height:1px;background:var(--grad);flex-shrink:0}
 .kick b{color:var(--green);font-weight:500}
-h2.sec{font-size:clamp(30px,4.4vw,52px);max-width:20ch;margin-bottom:20px}
+h2.sec{font-size:clamp(32px,4.9vw,60px);max-width:19ch;margin-bottom:24px;line-height:1.02}
 h2.sec.wide{max-width:26ch}
-.lead{font-size:19px;font-weight:300;color:var(--muted);max-width:64ch;line-height:1.6;margin-bottom:54px}
+.lead{font-size:20px;font-weight:300;color:var(--muted);max-width:62ch;line-height:1.62;margin-bottom:64px}
 .lead b{color:var(--fg);font-weight:500}
 
 /* ---------- botões ---------- */
@@ -139,20 +139,8 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
 .vqc-rail .s2 .bar{background:linear-gradient(90deg,#3D4CD1,#2FA55E)}
 .vqc-rail .s3 .bar{background:linear-gradient(90deg,#2FA55E,#1FEF49)}
 
-.hero-card{background:rgba(255,255,255,.045);border:1px solid rgba(31,239,73,.24);
-  border-radius:var(--r);padding:34px;backdrop-filter:blur(18px) saturate(150%);
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.1);
-  justify-self:end;max-width:400px;width:100%;
-  transition:transform .35s cubic-bezier(.2,.7,.3,1),border-color .35s ease}
-.hero-card:hover{transform:translateY(-6px);border-color:rgba(31,239,73,.5)}
-.hc-head{display:flex;gap:13px;align-items:flex-start;padding-bottom:22px;margin-bottom:22px;
-  border-bottom:1px dashed rgba(31,239,73,.24)}
 .hc-dot{width:10px;height:10px;border-radius:50%;background:var(--green);margin-top:7px;
   flex-shrink:0;box-shadow:0 0 0 4px rgba(31,239,73,.18);animation:pulse 2.6s ease-in-out infinite}
-.hc-head b{display:block;font-family:var(--display);font-weight:800;font-size:15px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:5px}
-.hc-head p{font-size:13.5px;color:var(--muted);line-height:1.55}
 .hc-note{margin-top:15px;font-size:11.5px;color:var(--muted-2);text-align:center;line-height:1.55}
 
 .hero-selos{margin-top:64px;padding-top:38px;border-top:1px solid var(--line);
@@ -162,11 +150,57 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
 .selo .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted-2);line-height:1.5;max-width:24ch}
 
+/* retrato recortado: o que dava vida ao hero das outras LPs */
+.hero-figura{position:relative;justify-self:end;width:100%;max-width:440px;margin:0}
+.hf-glow{position:absolute;z-index:0;left:50%;top:4%;transform:translateX(-50%);
+  width:116%;aspect-ratio:1/1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 50% 44%, rgba(26,5,255,.50) 0%, rgba(26,5,255,.22) 32%,
+    rgba(31,239,73,.12) 55%, transparent 72%);filter:blur(8px)}
+.hf-foto{position:relative;z-index:1;width:100%;height:auto;display:block;
+  /* contorno azul/verde: sem ele o terno marinho some no fundo preto */
+  filter:drop-shadow(-15px 4px 22px rgba(26,5,255,.55))
+         drop-shadow(16px 10px 26px rgba(31,239,73,.26))
+         drop-shadow(0 22px 38px rgba(0,0,0,.7));
+  -webkit-mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%)}
+.hf-chip{position:absolute;z-index:3;left:-5%;top:44%;display:flex;align-items:center;gap:12px;
+  background:rgba(13,13,15,.62);backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid rgba(31,239,73,.3);border-radius:14px;padding:14px 20px;
+  box-shadow:0 24px 52px -16px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.1)}
+.hf-nome{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.12;
+  letter-spacing:-.015em;color:var(--fg);max-width:14ch}
+.hf-cta-wrap{position:absolute;z-index:4;left:0;right:0;top:64%;display:flex;
+  justify-content:center;pointer-events:none}
+.hf-cta-wrap .btn{pointer-events:auto;white-space:nowrap;
+  box-shadow:0 26px 58px -14px rgba(0,0,0,.92),0 16px 44px -14px rgba(26,5,255,.85)}
+
+/* ---------- segmentos ---------- */
+.sec-seg{background:var(--ink);border-top:1px solid var(--line-soft);padding:96px 0}
+.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.seg{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);
+  transition:border-color .35s ease,transform .35s cubic-bezier(.2,.7,.3,1)}
+.seg:hover{border-color:rgba(31,239,73,.4);transform:translateY(-5px)}
+.seg img{width:100%;height:260px;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.seg:hover img{transform:scale(1.05)}
+.seg::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(10,10,10,.96) 12%, rgba(10,10,10,.35) 52%, transparent 88%)}
+.seg-txt{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 26px 24px}
+.seg-txt .n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--green);margin-bottom:8px}
+.seg-txt h3{font-size:23px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.seg-txt p{font-size:14px;font-weight:300;color:var(--muted);line-height:1.5}
+
 /* ---------- 01 cenário ---------- */
 .sec-cenario{background:var(--ink-2);border-top:1px solid var(--line-soft)}
-.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.prob-card{background:var(--card);padding:38px 32px;position:relative;transition:background .3s ease}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prob-card{background:var(--card);padding:40px 34px;position:relative;overflow:hidden;
+  border:1px solid var(--line);border-radius:var(--r);
+  transition:background .3s ease,border-color .3s ease,transform .3s cubic-bezier(.2,.7,.3,1)}
+.prob-card::after{content:'';position:absolute;inset:0 0 auto 0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)}
+.prob-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
 .prob-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--grad);
   transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
 .prob-card:hover{background:var(--card-2)}
@@ -282,10 +316,11 @@ header .h-cta:hover{background:rgba(31,239,73,.1)}
 
 /* ---------- 05 diagnóstico ---------- */
 .sec-diag{background:var(--ink-2);border-top:1px solid var(--line-soft)}
-.diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .diag-q{background:var(--card);padding:32px 28px;display:flex;flex-direction:column;gap:14px;
-  transition:background .3s ease;min-height:172px}
+  border:1px solid var(--line);border-radius:var(--r-sm);min-height:180px;
+  transition:background .3s ease,border-color .3s ease,transform .3s cubic-bezier(.2,.7,.3,1)}
+.diag-q:hover{transform:translateY(-4px);border-color:rgba(31,239,73,.32)}
 .diag-q:hover{background:var(--card-2)}
 .diag-q .qn{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--green)}
 .diag-q p{font-size:16px;font-weight:400;line-height:1.4;letter-spacing:-.01em}
@@ -388,7 +423,17 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   .hero h1{max-width:100%;font-size:clamp(28px,7.2vw,40px)}
   .hero h1 .l1{font-size:.62em}
   .hero-sub{max-width:100%;font-size:16.5px}
-  .hero-card{max-width:100%;justify-self:stretch;padding:26px 22px}
+  .hero-figura{max-width:320px;justify-self:center;margin:0 auto}
+  .hf-chip{left:-12px;top:42%;padding:11px 14px;border-radius:12px;gap:10px}
+  .hf-nome{font-size:16px;max-width:12ch}
+  .hf-cta-wrap{top:66%}
+  .hf-cta-wrap .btn{font-size:12.5px;padding:14px 18px}
+  .hf-glow{width:150%}
+  .sec-seg{padding:60px 0}
+  .seg-grid{grid-template-columns:1fr;gap:14px;margin-top:30px}
+  .seg img{height:200px}
+  .seg-txt{padding:20px}
+  .seg-txt h3{font-size:20px}
   .hero-selos{margin-top:40px;padding-top:28px;gap:28px}
   .selo .num{font-size:27px}
   .vqc-rail{max-width:100%}
@@ -400,6 +445,8 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
   .kick{font-size:10.5px}
 
   .prob-grid,.diag-grid,.cases-grid,.cta-wrap,.fit-list{grid-template-columns:1fr}
+  .prob-grid{gap:12px}
+  .diag-grid{gap:12px}
   .prob-card{padding:26px 22px}
   .prob-card h3{font-size:19px}
   .prob-fecho{padding:24px 22px}
@@ -482,17 +529,22 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
         </div>
       </div>
 
-      <aside class="hero-card rv">
-        <div class="hc-head">
-          <span class="hc-dot"></span>
-          <div>
-            <b>Fale com um especialista da ARGOS</b>
-            <p>Analisamos o cenário atual da sua aquisição antes de qualquer aumento de investimento.</p>
-          </div>
+      <figure class="hero-figura rv">
+        <span class="hf-glow" aria-hidden="true"></span>
+        <picture>
+          <source srcset="assets/retrato.webp" type="image/webp">
+          <img class="hf-foto" src="assets/retrato.png" alt="Especialista da ARGOS"
+               width="868" height="1160" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption class="hf-chip">
+          <i class="hc-dot"></i>
+          <strong class="hf-nome">Fale com um especialista</strong>
+        </figcaption>
+        <div class="hf-cta-wrap">
+          <a href="form.html" class="btn btn-grad">Quero meu diagnóstico <span class="arw">→</span></a>
         </div>
-        <a href="form.html" class="btn btn-grad btn-full">Quero meu diagnóstico <span class="arw">→</span></a>
         <p class="hc-note">Sem compromisso de contratação.<br>Resposta pelo WhatsApp corporativo.</p>
-      </aside>
+      </figure>
     </div>
 
     <div class="hero-selos rv">
@@ -508,6 +560,45 @@ footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
         <div class="num" style="color:var(--blue-lt)">Dados</div>
         <div class="lab">Do primeiro clique<br>até a oportunidade</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SEGMENTOS ======================= -->
+<section class="sec-seg" id="segmentos">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="kick rv">Onde a ARGOS atua</div>
+    <h2 class="sec wide rv">O mesmo método, adaptado ao ciclo de venda de cada mercado.</h2>
+
+    <div class="seg-grid">
+      <article class="seg rv">
+        <img src="assets/seg-industria.webp" alt="Chão de fábrica de uma indústria"
+             width="760" height="570" loading="lazy" decoding="async">
+        <div class="seg-txt">
+          <div class="n">Indústria</div>
+          <h3>Venda técnica e por cotação</h3>
+          <p>Ciclo longo, decisão compartilhada e pedido de orçamento como conversão.</p>
+        </div>
+      </article>
+      <article class="seg rv">
+        <img src="assets/seg-educacao.webp" alt="Sala de aula de uma instituição de ensino"
+             width="760" height="570" loading="lazy" decoding="async">
+        <div class="seg-txt">
+          <div class="n">Educação</div>
+          <h3>Captação de matrículas</h3>
+          <p>Calendário definido, concorrência local e decisão em família.</p>
+        </div>
+      </article>
+      <article class="seg rv">
+        <img src="assets/seg-servicos.webp" alt="Reunião comercial entre dois profissionais"
+             width="760" height="570" loading="lazy" decoding="async">
+        <div class="seg-txt">
+          <div class="n">Serviços e B2B</div>
+          <h3>Venda consultiva</h3>
+          <p>Proposta, reunião e relacionamento como etapas do funil.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -904,7 +995,15 @@ if ('IntersectionObserver' in window) document.documentElement.className += ' re
       .fromTo('.hero-sub', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.45,stagger:0.07}, '-=0.42')
       .fromTo('.vqc-rail', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.45}, '-=0.32')
       .fromTo('.vqc-rail .bar', {scaleX:0}, {scaleX:1,duration:0.50,stagger:0.08,ease:'power2.out'}, '-=0.30')
-      .fromTo('.hero-card', {autoAlpha:0,y:24}, {autoAlpha:1,y:0,duration:0.60}, '-=0.70')
+      .fromTo('.hero-figura', {autoAlpha:0,y:24}, {autoAlpha:1,y:0,duration:0.60}, '-=0.70')
+      .fromTo('.hf-chip', {autoAlpha:0,x:-14}, {autoAlpha:1,x:0,duration:0.40}, '-=0.32')
+      .fromTo('.hf-cta-wrap', {autoAlpha:0,y:14}, {autoAlpha:1,y:0,duration:0.40}, '-=0.24')
+      .add(function(){
+        /* flutuar de leve; nos involucros, nunca no botao — assim o
+           transform do :hover continua livre */
+        gsap.to('.hf-chip',     { y:-8, duration:3.2, ease:'sine.inOut', yoyo:true, repeat:-1 });
+        gsap.to('.hf-cta-wrap', { y:-6, duration:2.6, ease:'sine.inOut', yoyo:true, repeat:-1, delay:0.35 });
+      })
       .fromTo('.hero-selos', {autoAlpha:0,y:16}, {autoAlpha:1,y:0,duration:0.50}, '-=0.40')
       .fromTo('.hero-selos .selo', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.40,stagger:0.08}, '-=0.38');
 
