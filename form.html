@@ -534,6 +534,16 @@ function telaPergunta(){
   , p.tipo !== 'escolha');
 }
 
+/* Grau do lead pelo faturamento. Cada grau tem a sua propria pagina de
+   obrigado, para o Meta poder contar uma conversao por URL. */
+var FAIXAS_C = ["Até R$ 15 mil"];
+var FAIXAS_B = ["De R$ 15 mil a R$ 30 mil", "De R$ 30 mil a R$ 50 mil"];
+function grauLead(faturamento){
+  if (FAIXAS_C.indexOf(faturamento) >= 0) return 'c';
+  if (FAIXAS_B.indexOf(faturamento) >= 0) return 'b';
+  return 'a';
+}
+
 function telaFinal(){
   var chave = rotaFinal(estado.r);
   estado.i = PERGUNTAS.length;
@@ -547,7 +557,7 @@ function telaFinal(){
     }));
   } catch(e){}
 
-  location.href = 'obrigado.html';
+  location.href = 'obrigado-lead-' + grauLead(estado.r.faturamento) + '.html';
 }
 
 function desenhar(){

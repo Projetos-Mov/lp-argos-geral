@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Obrigado | Diagnóstico ARGOS</title>
+<title>Obrigado | Diagnóstico ARGOS | Lead B</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -106,16 +106,10 @@ var PIXEL_ID = '';
 var WHATS  = '557131801402';
 var ORIGEM = 'Diagnóstico ARGOS · Geral';
 
-/* Faixas de faturamento desta LP traduzidas para o grau do lead.
-   Qualquer faixa fora destas listas vale Lead A. */
-var FAIXAS_C = ["Até R$ 15 mil"];
-var FAIXAS_B = ["De R$ 15 mil a R$ 30 mil", "De R$ 30 mil a R$ 50 mil"];
-
-function grau(faturamento){
-  if (FAIXAS_C.indexOf(faturamento) >= 0) return 'C';
-  if (FAIXAS_B.indexOf(faturamento) >= 0) return 'B';
-  return 'A';
-}
+/* Esta pagina existe so para o Lead B. Uma URL por grau permite
+   criar uma conversao personalizada por URL no Meta e otimizar para o
+   grau que interessa. Quem escolhe o destino e o formulario. */
+var G = 'B';
 
 /* ------------------------------------------------------------------ dados */
 var r = {}, rota = 'ok';
@@ -124,8 +118,6 @@ try {
   if (salvo && salvo.r) r = salvo.r;
   if (salvo && salvo.rota) rota = salvo.rota;
 } catch(e){}
-
-var G = grau(r.faturamento);
 
 /* ------------------------------------------------------------------ meta */
 /* Dispara uma vez so: recarregar a pagina nao pode contar lead de novo. */
