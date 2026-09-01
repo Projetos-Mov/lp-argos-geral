@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARGOS — Marketing orientado a oportunidades de negócio | Método VQC</title>
+<meta name="description" content="A ARGOS transforma o digital em canal de geração de demanda e oportunidades comerciais. Método VQC: Volume, Qualificação, Conversão.">
+<meta property="og:title" content="ARGOS — Marketing orientado a oportunidades de negócio">
+<meta property="og:description" content="Geramos volume, identificamos o que qualifica e escalamos o que converte.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fontes sem bloquear a primeira pintura: baixa como "print" e promove
+     para "all" ao terminar. O CSS já pede display=swap. -->
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+      onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"></noscript>
+<style>
+:root{
+  --ink:#0A0A0A; --ink-2:#0F0F11; --card:#121212; --card-2:#161618;
+  --line:#292929; --line-soft:rgba(255,255,255,.08);
+  --fg:#FAFAFA; --muted:#A6A6A6; --muted-2:#8A8A8A;
+  --blue:#1A05FF; --blue-lt:#6A57FF; --teal:#35C9B0; --green:#1FEF49;
+  --grad:linear-gradient(135deg,#1A05FF 0%,#1FEF49 100%);
+  --grad-txt:linear-gradient(120deg,#7C6BFF 0%,#1FEF49 100%);
+  --grad-soft:linear-gradient(135deg,rgba(26,5,255,.16) 0%,rgba(31,239,73,.16) 100%);
+  --r:14px; --r-sm:10px; --max:1280px;
+  --display:'Archivo','Helvetica Neue',sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink);-webkit-text-size-adjust:100%}
+body{font-family:var(--body);font-size:17px;line-height:1.65;color:var(--fg);
+  background:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4,.display{font-family:var(--display);font-weight:800;line-height:1.04;letter-spacing:-.025em}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 32px;position:relative;z-index:2}
+section{padding:118px 0;position:relative}
+.grad-text{background:var(--grad-txt);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent}
+.green{color:var(--green)}
+
+.mesh{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.026) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.026) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 78%)}
+
+.kick{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted-2);display:inline-flex;align-items:center;
+  gap:14px;margin-bottom:20px}
+.kick::before{content:'';width:34px;height:1px;background:var(--grad);flex-shrink:0}
+.kick b{color:var(--green);font-weight:500}
+h2.sec{font-size:clamp(30px,4.4vw,52px);max-width:20ch;margin-bottom:20px}
+h2.sec.wide{max-width:26ch}
+.lead{font-size:19px;font-weight:300;color:var(--muted);max-width:64ch;line-height:1.6;margin-bottom:54px}
+.lead b{color:var(--fg);font-weight:500}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.04em;
+  text-transform:uppercase;padding:20px 30px;border-radius:12px;border:0;cursor:pointer;
+  transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s ease}
+.btn .arw{transition:transform .25s cubic-bezier(.2,.7,.3,1);display:inline-block}
+.btn:hover{transform:translateY(-3px)}
+.btn:hover .arw{transform:translateX(6px)}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 14px 40px -12px rgba(26,5,255,.7)}
+.btn-green{background:var(--green);color:#06170B;box-shadow:0 14px 40px -14px rgba(31,239,73,.7)}
+.btn-full{width:100%}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;padding:14px 32px;
+  background:rgba(10,10,10,.82);backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line-soft);
+  transition:padding .3s ease,background .3s ease}
+html.scrolled header{padding:9px 32px;background:rgba(10,10,10,.95)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:28px;width:auto;filter:drop-shadow(0 0 14px rgba(26,5,255,.45))}
+.brand-name{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.brand-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted-2);padding-left:14px;border-left:1px solid var(--line)}
+header .h-cta{font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:.06em;
+  text-transform:uppercase;padding:11px 20px;border-radius:9px;
+  border:1px solid rgba(31,239,73,.35);color:var(--green);transition:background .2s ease}
+header .h-cta:hover{background:rgba(31,239,73,.1)}
+
+/* ---------- hero ---------- */
+.hero{padding:190px 0 110px;overflow:hidden;background-color:var(--ink);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 12% 8%, rgba(26,5,255,.18), transparent 62%),
+    url("assets/hero.jpg");
+  background-image:
+    radial-gradient(ellipse 70% 55% at 12% 8%, rgba(26,5,255,.18), transparent 62%),
+    image-set(url("assets/hero.webp") type("image/webp"), url("assets/hero.jpg") type("image/jpeg"));
+  /* Largura cheia ancorada no topo, nunca 'cover': a dissolução para o
+     preto já vem embutida no arquivo. */
+  background-position:center, top center;
+  background-size:auto, 100% auto;
+  background-repeat:no-repeat, no-repeat}
+.hero .mesh{opacity:.4}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(31,239,73,.07);
+  border:1px solid rgba(31,239,73,.3);border-radius:999px;padding:9px 18px 9px 13px;
+  font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--green);margin-bottom:30px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(31,239,73,.2);animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(31,239,73,.2)}50%{box-shadow:0 0 0 7px rgba(31,239,73,.05)}}
+.hero h1{font-size:clamp(32px,4.3vw,56px);line-height:1.03;margin-bottom:26px;max-width:16ch;
+  text-shadow:0 4px 26px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.4)}
+.hero h1 .l1{display:block;font-size:.54em;font-weight:600;color:var(--muted);
+  letter-spacing:-.01em;margin-bottom:14px;font-stretch:100%}
+.hero h1 .l2{display:block}
+.hero-sub{font-size:18px;font-weight:300;color:var(--muted);max-width:58ch;line-height:1.62;
+  margin-bottom:18px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.hero-sub b{color:var(--fg);font-weight:500}
+.hero-sub + .hero-sub{margin-bottom:38px}
+
+.vqc-rail{display:flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  max-width:600px;background:rgba(10,10,12,.5);backdrop-filter:blur(8px)}
+.vqc-rail .step{flex:1;padding:16px 18px;position:relative;border-right:1px solid var(--line)}
+.vqc-rail .step:last-child{border-right:0}
+.vqc-rail .ltr{font-family:var(--display);font-weight:900;font-size:13px;line-height:1;margin-bottom:6px}
+.vqc-rail .nm{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.vqc-rail .s1 .ltr{color:var(--blue-lt)} .vqc-rail .s2 .ltr{color:#5CB878} .vqc-rail .s3 .ltr{color:var(--green)}
+.vqc-rail .bar{position:absolute;left:0;right:0;bottom:0;height:2px;transform-origin:0 50%}
+.vqc-rail .s1 .bar{background:linear-gradient(90deg,#1A05FF,#3D4CD1)}
+.vqc-rail .s2 .bar{background:linear-gradient(90deg,#3D4CD1,#2FA55E)}
+.vqc-rail .s3 .bar{background:linear-gradient(90deg,#2FA55E,#1FEF49)}
+
+.hero-card{background:rgba(255,255,255,.045);border:1px solid rgba(31,239,73,.24);
+  border-radius:var(--r);padding:34px;backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.1);
+  justify-self:end;max-width:400px;width:100%;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1),border-color .35s ease}
+.hero-card:hover{transform:translateY(-6px);border-color:rgba(31,239,73,.5)}
+.hc-head{display:flex;gap:13px;align-items:flex-start;padding-bottom:22px;margin-bottom:22px;
+  border-bottom:1px dashed rgba(31,239,73,.24)}
+.hc-dot{width:10px;height:10px;border-radius:50%;background:var(--green);margin-top:7px;
+  flex-shrink:0;box-shadow:0 0 0 4px rgba(31,239,73,.18);animation:pulse 2.6s ease-in-out infinite}
+.hc-head b{display:block;font-family:var(--display);font-weight:800;font-size:15px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:5px}
+.hc-head p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.hc-note{margin-top:15px;font-size:11.5px;color:var(--muted-2);text-align:center;line-height:1.55}
+
+.hero-selos{margin-top:64px;padding-top:38px;border-top:1px solid var(--line);
+  display:flex;gap:56px;flex-wrap:wrap}
+.selo .num{font-family:var(--display);font-weight:900;font-size:34px;line-height:1;
+  margin-bottom:8px;letter-spacing:-.03em}
+.selo .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted-2);line-height:1.5;max-width:24ch}
+
+/* ---------- 01 cenário ---------- */
+.sec-cenario{background:var(--ink-2);border-top:1px solid var(--line-soft)}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.prob-card{background:var(--card);padding:38px 32px;position:relative;transition:background .3s ease}
+.prob-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--grad);
+  transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.prob-card:hover{background:var(--card-2)}
+.prob-card:hover::before{transform:scaleY(1)}
+.prob-num{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+  color:var(--muted-2);margin-bottom:18px}
+.prob-card h3{font-size:21px;font-weight:700;line-height:1.18;margin-bottom:12px;letter-spacing:-.015em}
+.prob-card p{font-size:15.5px;font-weight:300;color:var(--muted);line-height:1.62}
+.prob-card p .par{display:block;color:var(--fg);font-weight:500;margin-top:8px}
+.prob-fecho{margin-top:34px;padding:34px 40px;background:var(--grad-soft);
+  border:1px solid rgba(31,239,73,.24);border-radius:var(--r)}
+.prob-fecho p{font-size:17px;font-weight:300;color:var(--muted);line-height:1.6;max-width:70ch}
+.prob-fecho .destaque{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.3vw,26px);
+  color:var(--fg);line-height:1.3;letter-spacing:-.02em;margin-top:14px}
+
+/* ---------- 02 método ---------- */
+.sec-metodo{background:
+  radial-gradient(ellipse 60% 50% at 85% 12%, rgba(26,5,255,.16), transparent 60%),
+  radial-gradient(ellipse 55% 45% at 8% 88%, rgba(31,239,73,.10), transparent 60%), var(--ink);
+  border-top:1px solid var(--line-soft)}
+.malha-vqc{margin:0 0 46px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  position:relative;background:#0C0C0E}
+.malha-vqc img{width:100%;height:auto;display:block;opacity:.92}
+.malha-vqc figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 30px;
+  background:linear-gradient(to top, rgba(10,10,10,.94), transparent);
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.malha-vqc figcaption b{color:var(--green);font-weight:500}
+.vqc-stack{display:flex;flex-direction:column;gap:20px}
+.vqc-block{display:grid;grid-template-columns:150px 1fr;gap:44px;background:rgba(255,255,255,.028);
+  border:1px solid var(--line);border-radius:var(--r);padding:44px;position:relative;overflow:hidden;
+  transition:border-color .3s ease,background .3s ease}
+.vqc-block:hover{background:rgba(255,255,255,.045)}
+.vqc-block .edge{position:absolute;left:0;top:0;bottom:0;width:3px;transform-origin:50% 0}
+.vqc-block.v .edge{background:linear-gradient(180deg,#1A05FF,#3B36E8)}
+.vqc-block.q .edge{background:linear-gradient(180deg,#3B36E8,#2CA95F)}
+.vqc-block.c .edge{background:linear-gradient(180deg,#2CA95F,#1FEF49)}
+.vqc-block.v:hover{border-color:rgba(106,87,255,.45)}
+.vqc-block.q:hover{border-color:rgba(76,160,120,.45)}
+.vqc-block.c:hover{border-color:rgba(31,239,73,.45)}
+.vqc-letra{font-family:var(--display);font-weight:900;font-size:118px;line-height:.8;letter-spacing:-.06em}
+.vqc-block.v .vqc-letra{color:var(--blue-lt);text-shadow:0 0 60px rgba(26,5,255,.5)}
+.vqc-block.q .vqc-letra{color:#4CA078;text-shadow:0 0 60px rgba(60,140,110,.4)}
+.vqc-block.c .vqc-letra{color:var(--green);text-shadow:0 0 60px rgba(31,239,73,.35)}
+.vqc-etapa{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted-2);margin-top:14px}
+.vqc-tit{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+.vqc-block.v .vqc-tit{color:var(--blue-lt)} .vqc-block.q .vqc-tit{color:#5CB878} .vqc-block.c .vqc-tit{color:var(--green)}
+.vqc-block h3{font-size:clamp(22px,2.6vw,30px);font-weight:800;margin-bottom:14px;letter-spacing:-.02em;line-height:1.12}
+.vqc-block p{font-size:16.5px;font-weight:300;color:var(--muted);line-height:1.66;max-width:68ch}
+.vqc-block p + p{margin-top:12px}
+.vqc-block p b{color:var(--fg);font-weight:500}
+.metodo-fecho{margin-top:36px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  padding:38px 44px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.metodo-fecho p{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.2vw,25px);
+  line-height:1.35;letter-spacing:-.02em}
+.metodo-fecho p span{display:block}
+.metodo-fecho p .hl{color:var(--green)}
+
+/* ---------- 03 cases ---------- */
+.sec-cases{background:var(--ink-2);border-top:1px solid var(--line-soft)}
+.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.case{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  transition:border-color .3s ease,transform .3s ease}
+.case:hover{border-color:rgba(31,239,73,.35);transform:translateY(-4px)}
+.case-top{padding:32px 36px;border-bottom:1px solid var(--line);background:var(--grad-soft)}
+.case-top h3{font-size:24px;font-weight:800;line-height:1.1;margin-bottom:10px}
+.case-seg{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+.case-body{padding:32px 36px}
+.case-item + .case-item{margin-top:24px;padding-top:24px;border-top:1px dashed var(--line)}
+.case-lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted-2);margin-bottom:10px}
+.case-item p{font-size:16px;font-weight:300;color:var(--muted);line-height:1.62}
+.case-item p.ph{color:var(--muted-2);font-style:italic;border-left:2px solid var(--line);padding-left:14px}
+
+/* ---------- 04 para quem ---------- */
+.sec-fit{background:radial-gradient(ellipse 50% 60% at 90% 40%, rgba(26,5,255,.13), transparent 62%), var(--ink);
+  border-top:1px solid var(--line-soft)}
+.fit-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.fit-list li{display:flex;gap:16px;align-items:flex-start;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:22px 26px;
+  font-size:16px;font-weight:300;color:var(--muted);line-height:1.55;
+  transition:border-color .25s ease,transform .25s ease,background .25s ease}
+.fit-list li:hover{border-color:rgba(31,239,73,.4);transform:translateX(5px);background:var(--card-2)}
+.fit-list li b{color:var(--fg);font-weight:500}
+.fit-check{width:22px;height:22px;border-radius:6px;flex-shrink:0;margin-top:1px;
+  background:rgba(31,239,73,.12);border:1px solid rgba(31,239,73,.4);display:grid;place-items:center}
+.fit-check svg{width:12px;height:12px;stroke:var(--green);stroke-width:3;fill:none}
+.manifesto{margin-top:44px;padding:52px 48px;border-radius:var(--r);
+  background:var(--grad-soft);border:1px solid rgba(31,239,73,.26)}
+.manifesto h3{font-size:clamp(24px,3.4vw,38px);line-height:1.14;letter-spacing:-.025em;margin-bottom:18px;max-width:22ch}
+.manifesto .nem{font-family:var(--mono);font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted-2);line-height:2;margin-bottom:20px}
+.manifesto .frase{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.6vw,28px);
+  color:var(--green);line-height:1.25;letter-spacing:-.02em;margin-bottom:20px}
+.manifesto p{font-size:16.5px;font-weight:300;color:var(--muted);line-height:1.65;max-width:66ch}
+.manifesto p b{color:var(--fg);font-weight:500}
+
+/* ---------- 05 diagnóstico ---------- */
+.sec-diag{background:var(--ink-2);border-top:1px solid var(--line-soft)}
+.diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.diag-q{background:var(--card);padding:32px 28px;display:flex;flex-direction:column;gap:14px;
+  transition:background .3s ease;min-height:172px}
+.diag-q:hover{background:var(--card-2)}
+.diag-q .qn{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--green)}
+.diag-q p{font-size:16px;font-weight:400;line-height:1.4;letter-spacing:-.01em}
+.diag-fecho{margin-top:34px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;
+  padding:36px 42px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.diag-fecho p{font-size:17px;font-weight:300;color:var(--muted);line-height:1.6;max-width:66ch}
+.diag-fecho p b{color:var(--fg);font-weight:500}
+
+/* ---------- CTA final ---------- */
+.sec-cta{background:
+  radial-gradient(ellipse 70% 60% at 20% 15%, rgba(26,5,255,.26), transparent 62%),
+  radial-gradient(ellipse 60% 55% at 88% 85%, rgba(31,239,73,.16), transparent 60%), var(--ink);
+  border-top:1px solid var(--line-soft)}
+.cta-wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:stretch}
+.cta-main{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:52px;
+  display:flex;flex-direction:column;justify-content:center}
+.cta-brandline{font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--green);margin-bottom:22px}
+.cta-main h2{font-size:clamp(26px,3.5vw,42px);line-height:1.06;margin-bottom:22px;letter-spacing:-.03em}
+.cta-main p{font-size:17px;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.cta-main p b{color:var(--fg);font-weight:500}
+.cta-main .btn{margin-top:22px;align-self:flex-start}
+.flow{background:var(--card);border:1px solid rgba(31,239,73,.24);border-radius:var(--r);padding:42px 36px}
+.flow-tag{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted-2);margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.flow-tag::before{content:'';width:26px;height:1px;background:var(--grad)}
+.flow-sub{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.2;
+  letter-spacing:-.02em;margin-bottom:26px}
+.flow-step{position:relative;padding-left:44px;padding-bottom:28px}
+.flow-step:last-child{padding-bottom:0}
+.flow-step .ln{position:absolute;left:11px;top:26px;bottom:2px;width:1px;
+  background:linear-gradient(180deg,var(--line),transparent);transform-origin:50% 0}
+.flow-dot{position:absolute;left:0;top:4px;width:23px;height:23px;border-radius:50%;
+  display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:11px;color:#0A0A0A}
+.flow-step.f1 .flow-dot{background:var(--blue-lt);box-shadow:0 0 20px rgba(106,87,255,.6)}
+.flow-step.f2 .flow-dot{background:#4CA078;box-shadow:0 0 20px rgba(76,160,120,.5)}
+.flow-step.f3 .flow-dot{background:var(--green);box-shadow:0 0 22px rgba(31,239,73,.6)}
+.flow-step h4{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:6px}
+.flow-step.f1 h4{color:var(--blue-lt)} .flow-step.f2 h4{color:#5CB878} .flow-step.f3 h4{color:var(--green)}
+.flow-step p{font-size:14.5px;font-weight:300;color:var(--muted);line-height:1.5}
+
+/* ---------- convite ao formulário ---------- */
+.sec-form{background:var(--ink-2);border-top:1px solid var(--line-soft);padding:110px 0}
+.form-wrap{max-width:760px;margin:0 auto;text-align:center;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--r);padding:52px 48px;
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.9)}
+.form-tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--green);margin-bottom:16px}
+.form-wrap h2{font-size:clamp(27px,3.4vw,40px);line-height:1.06;margin-bottom:14px;letter-spacing:-.03em}
+.form-sub{font-size:16.5px;font-weight:300;color:var(--muted);line-height:1.6;margin:0 auto 32px;max-width:56ch}
+.form-wrap .btn{width:100%;max-width:420px}
+.ff-lgpd{margin-top:18px;font-size:12.5px;color:var(--muted-2);line-height:1.55}
+
+/* ---------- footer ---------- */
+footer{background:#060606;border-top:1px solid var(--line);padding:44px 32px}
+.foot{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;gap:28px;flex-wrap:wrap}
+.foot-brandrow{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.foot-mark{height:30px;width:auto}
+.foot-brand{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.16em;text-transform:uppercase}
+.foot p{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);line-height:1.8;letter-spacing:.04em}
+.foot-vqc{display:flex;gap:10px;flex-wrap:wrap}
+.foot-vqc span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted-2);padding:7px 13px;border:1px solid var(--line);border-radius:7px}
+
+/* ---------- reveal ---------- */
+.reveal .rv{opacity:0;transform:translateY(24px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal .rv.in{opacity:1;transform:none}
+.reveal.reveal-off .rv{opacity:1!important;transform:none!important;transition:none!important}
+.reveal.gsap-on .rv{transition:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal .rv{opacity:1;transform:none;transition:none}
+  *{animation:none!important} html{scroll-behavior:auto}
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1080px){
+  .prob-grid{grid-template-columns:repeat(2,1fr)}
+  .diag-grid{grid-template-columns:repeat(2,1fr)}
+  .vqc-block{grid-template-columns:110px 1fr;gap:30px;padding:34px}
+  .vqc-letra{font-size:88px}
+}
+@media (max-width:900px){
+  body{font-size:16px}
+  section{padding:70px 0}
+  .container{padding:0 20px}
+  header{padding:10px 18px}
+  html.scrolled header{padding:8px 18px}
+  header .h-cta{min-height:44px;display:inline-flex;align-items:center;font-size:11px;padding:12px 16px}
+  .brand{min-height:44px}
+  .brand-lk{min-height:44px;align-items:center}
+  .brand-tag{display:none}
+
+  .hero{padding:120px 0 70px;
+    background-position:center, 20% top;
+    background-size:auto, 260% auto}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero h1{max-width:100%;font-size:clamp(28px,7.2vw,40px)}
+  .hero h1 .l1{font-size:.62em}
+  .hero-sub{max-width:100%;font-size:16.5px}
+  .hero-card{max-width:100%;justify-self:stretch;padding:26px 22px}
+  .hero-selos{margin-top:40px;padding-top:28px;gap:28px}
+  .selo .num{font-size:27px}
+  .vqc-rail{max-width:100%}
+  .vqc-rail .step{padding:13px 12px}
+  .vqc-rail .nm{font-size:9.5px;letter-spacing:.1em}
+
+  h2.sec{font-size:clamp(25px,6.2vw,34px);max-width:100%}
+  .lead{font-size:16.5px;margin-bottom:34px}
+  .kick{font-size:10.5px}
+
+  .prob-grid,.diag-grid,.cases-grid,.cta-wrap,.fit-list{grid-template-columns:1fr}
+  .prob-card{padding:26px 22px}
+  .prob-card h3{font-size:19px}
+  .prob-fecho{padding:24px 22px}
+  .prob-fecho .destaque{font-size:18px}
+
+  .malha-vqc{margin-bottom:30px}
+  .malha-vqc figcaption{padding:16px 18px;font-size:10.5px;letter-spacing:.1em}
+  .vqc-block{grid-template-columns:1fr;gap:18px;padding:28px 22px}
+  .vqc-letra{font-size:66px}
+  .vqc-block p{font-size:15.5px}
+  .metodo-fecho{grid-template-columns:1fr;gap:24px;padding:26px 22px}
+  .metodo-fecho .btn{width:100%}
+
+  .case-top,.case-body{padding:26px 22px}
+  .case-top h3{font-size:21px}
+
+  .fit-list li{padding:18px 20px;font-size:15.5px}
+  .manifesto{padding:28px 22px;margin-top:32px}
+  .manifesto .nem{font-size:12.5px;line-height:1.9}
+
+  .diag-q{min-height:0;padding:24px 22px;gap:10px}
+  .diag-fecho{grid-template-columns:1fr;gap:24px;padding:26px 22px}
+  .diag-fecho .btn{width:100%}
+
+  .cta-main{padding:30px 22px}
+  .cta-main .btn{width:100%;align-self:stretch}
+  .flow{padding:28px 22px}
+
+  .sec-form{padding:70px 0}
+  .form-wrap{padding:28px 20px}
+  .btn{font-size:14px;padding:17px 24px}
+  .foot{flex-direction:column;text-align:center;gap:20px}
+  .foot-brandrow{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <a class="brand-lk" href="#topo" aria-label="ARGOS — início" style="display:flex;align-items:center;gap:12px">
+      <img src="assets/argos-mark.png" alt="" width="223" height="420">
+      <span class="brand-name">ARGOS</span>
+    </a>
+    <div class="brand-tag">Marketing orientado a negócios</div>
+  </div>
+  <a href="form.html" class="h-cta">Quero meu diagnóstico</a>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero" id="topo">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow rv"><span class="dot"></span> Marketing Digital Estratégico</div>
+
+        <h1>
+          <span class="l1 rv">Sua empresa pode ser excelente no que faz.</span>
+          <span class="l2 rv">Mas quando o cliente procura uma solução, ele encontra você
+            <span class="grad-text">ou o seu concorrente?</span></span>
+        </h1>
+
+        <p class="hero-sub rv">
+          A <b>ARGOS</b> transforma o digital em um canal de geração de demanda, oportunidades
+          comerciais e crescimento para empresas que querem vender mais com estratégia.
+        </p>
+        <p class="hero-sub rv">
+          Com o <b>Método VQC</b>, geramos volume, analisamos a qualidade das oportunidades e
+          direcionamos os investimentos para aquilo que realmente pode se transformar em negócio.
+        </p>
+
+        <div class="vqc-rail rv">
+          <div class="step s1"><div class="ltr">V</div><div class="nm">Volume</div><i class="bar"></i></div>
+          <div class="step s2"><div class="ltr">Q</div><div class="nm">Qualificação</div><i class="bar"></i></div>
+          <div class="step s3"><div class="ltr">C</div><div class="nm">Conversão</div><i class="bar"></i></div>
+        </div>
+      </div>
+
+      <aside class="hero-card rv">
+        <div class="hc-head">
+          <span class="hc-dot"></span>
+          <div>
+            <b>Fale com um especialista da ARGOS</b>
+            <p>Analisamos o cenário atual da sua aquisição antes de qualquer aumento de investimento.</p>
+          </div>
+        </div>
+        <a href="form.html" class="btn btn-grad btn-full">Quero meu diagnóstico <span class="arw">→</span></a>
+        <p class="hc-note">Sem compromisso de contratação.<br>Resposta pelo WhatsApp corporativo.</p>
+      </aside>
+    </div>
+
+    <div class="hero-selos rv">
+      <div class="selo">
+        <div class="num grad-text">VQC</div>
+        <div class="lab">Método proprietário<br>ARGOS</div>
+      </div>
+      <div class="selo">
+        <div class="num green">Estratégia</div>
+        <div class="lab">Marketing conectado<br>ao objetivo comercial</div>
+      </div>
+      <div class="selo">
+        <div class="num" style="color:var(--blue-lt)">Dados</div>
+        <div class="lab">Do primeiro clique<br>até a oportunidade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 01 · CENÁRIO ======================= -->
+<section class="sec-cenario" id="cenario">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="kick rv"><b>01</b> &nbsp;·&nbsp; O cenário</div>
+    <h2 class="sec rv">O problema nem sempre é falta de clientes.</h2>
+    <p class="lead rv">
+      Muitas vezes, sua empresa simplesmente <b>não está capturando a demanda certa — ou não consegue
+      transformar essa demanda em oportunidades reais de negócio.</b> Talvez hoje sua empresa enfrente
+      algum desses cenários:
+    </p>
+
+    <div class="prob-grid">
+      <div class="prob-card rv">
+        <div class="prob-num">01</div>
+        <h3>Seus concorrentes aparecem antes de você</h3>
+        <p>Quando um potencial cliente procura pelo produto ou serviço que sua empresa oferece, outras marcas ocupam o espaço que poderia ser seu.</p>
+      </div>
+      <div class="prob-card rv">
+        <div class="prob-num">02</div>
+        <h3>O marketing gera movimento, mas poucas vendas</h3>
+        <p>Existem acessos, seguidores, formulários e leads, mas poucas oportunidades realmente avançam para o comercial.</p>
+      </div>
+      <div class="prob-card rv">
+        <div class="prob-num">03</div>
+        <h3>Muitos contatos chegam sem perfil</h3>
+        <p>Sua equipe perde tempo atendendo pessoas que não possuem intenção, momento ou perfil para comprar.</p>
+      </div>
+      <div class="prob-card rv">
+        <div class="prob-num">04</div>
+        <h3>Você investe, mas não sabe o que realmente funciona</h3>
+        <p>Existem campanhas, anúncios e diferentes canais de aquisição, mas pouca clareza sobre quais ações estão contribuindo para gerar negócios.</p>
+      </div>
+      <div class="prob-card rv">
+        <div class="prob-num">05</div>
+        <h3>Marketing e comercial trabalham separados</h3>
+        <p>O marketing comemora leads.<span class="par">O comercial quer oportunidades.</span></p>
+      </div>
+    </div>
+
+    <div class="prob-fecho rv">
+      <p>E, no meio dessa distância, sua empresa pode estar desperdiçando orçamento, tempo e potencial de crescimento.</p>
+      <div class="destaque">É justamente esse espaço que a <span class="grad-text">ARGOS</span> trabalha.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 · MÉTODO VQC ======================= -->
+<section class="sec-metodo" id="metodo">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="kick rv"><b>02</b> &nbsp;·&nbsp; Método VQC</div>
+    <h2 class="sec wide rv">Não basta gerar atenção. É preciso entender qual demanda pode virar negócio.</h2>
+    <p class="lead rv">O <b>Método VQC</b> conecta marketing, dados e comercial através de três etapas.</p>
+
+    <figure class="malha-vqc rv">
+      <img src="assets/vqc-malha.webp" alt="Representação do funil VQC: muitos sinais de demanda à esquerda, em azul, afunilando até as oportunidades convertidas à direita, em verde."
+           width="1400" height="700" loading="lazy" decoding="async">
+      <figcaption>Volume gera dados &nbsp;·&nbsp; a qualificação separa o que tem aderência &nbsp;·&nbsp; <b>a conversão concentra o investimento</b></figcaption>
+    </figure>
+
+    <div class="vqc-stack">
+      <article class="vqc-block v rv">
+        <i class="edge"></i>
+        <div><div class="vqc-letra">V</div><div class="vqc-etapa">Etapa 01</div></div>
+        <div>
+          <div class="vqc-tit">Volume</div>
+          <h3>Geramos demanda.</h3>
+          <p>Estruturamos campanhas e canais para aumentar a presença da sua empresa diante das pessoas que estão procurando — ou podem precisar — daquilo que você oferece.</p>
+          <p>O objetivo inicial é gerar dados, alcance e oportunidades suficientes para entender melhor o comportamento do mercado.</p>
+        </div>
+      </article>
+
+      <article class="vqc-block q rv">
+        <i class="edge"></i>
+        <div><div class="vqc-letra">Q</div><div class="vqc-etapa">Etapa 02</div></div>
+        <div>
+          <div class="vqc-tit">Qualificação</div>
+          <h3>Descobrimos o que realmente tem potencial.</h3>
+          <p><b>Nem todo lead é uma oportunidade.</b></p>
+          <p>Analisamos os sinais gerados pelas campanhas para identificar quais públicos, mensagens, canais, ofertas e ações atraem contatos com maior aderência ao seu negócio.</p>
+          <p>Assim, o marketing deixa de trabalhar apenas para gerar quantidade e começa a perseguir <b>qualidade comercial</b>.</p>
+        </div>
+      </article>
+
+      <article class="vqc-block c rv">
+        <i class="edge"></i>
+        <div><div class="vqc-letra">C</div><div class="vqc-etapa">Etapa 03</div></div>
+        <div>
+          <div class="vqc-tit">Conversão</div>
+          <h3>Direcionamos a estratégia para o que gera resultado.</h3>
+          <p>Com mais clareza sobre o que funciona, concentramos os esforços nas estratégias que apresentam maior potencial de gerar oportunidades, reuniões, propostas e vendas.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="metodo-fecho rv">
+      <p>
+        <span>Gerar volume.</span>
+        <span>Identificar o que qualifica.</span>
+        <span class="hl">Escalar o que converte.</span>
+      </p>
+      <a href="form.html" class="btn btn-grad">Quero aplicar o Método VQC <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 · CASES ======================= -->
+<section class="sec-cases" id="cases">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="kick rv"><b>03</b> &nbsp;·&nbsp; Cases ARGOS</div>
+    <h2 class="sec rv">Estratégia que sai do relatório e chega ao comercial.</h2>
+    <p class="lead rv">Empresas que passaram a tratar o digital não apenas como divulgação, mas como um canal estratégico de aquisição.</p>
+
+    <div class="cases-grid">
+      <article class="case rv">
+        <div class="case-top">
+          <h3>[Case 01 — nome da empresa]</h3>
+          <div class="case-seg">[Inserir segmento]</div>
+        </div>
+        <div class="case-body">
+          <div class="case-item">
+            <div class="case-lab">Desafio</div>
+            <p class="ph">[Inserir principal cenário enfrentado pela empresa antes da ARGOS.]</p>
+          </div>
+          <div class="case-item">
+            <div class="case-lab">Estratégia</div>
+            <p>Estruturamos a geração de demanda, acompanhamos o comportamento das oportunidades e utilizamos os dados comerciais para otimizar continuamente as campanhas.</p>
+          </div>
+          <div class="case-item">
+            <div class="case-lab">Resultado</div>
+            <p class="ph">[Inserir resultado validado do projeto.]</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="case rv">
+        <div class="case-top">
+          <h3>[Case 02 — nome da empresa]</h3>
+          <div class="case-seg">[Inserir segmento]</div>
+        </div>
+        <div class="case-body">
+          <div class="case-item">
+            <div class="case-lab">Desafio</div>
+            <p class="ph">[Inserir principal cenário enfrentado pela empresa antes da ARGOS.]</p>
+          </div>
+          <div class="case-item">
+            <div class="case-lab">Estratégia</div>
+            <p>Reestruturamos a aquisição digital e conectamos os dados do marketing às oportunidades que realmente avançavam no processo comercial.</p>
+          </div>
+          <div class="case-item">
+            <div class="case-lab">Resultado</div>
+            <p class="ph">[Inserir resultado validado do projeto.]</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 · PARA QUEM É ======================= -->
+<section class="sec-fit" id="paraquem">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="kick rv"><b>04</b> &nbsp;·&nbsp; Para quem é</div>
+    <h2 class="sec wide rv">O Método VQC faz sentido para sua empresa se…</h2>
+
+    <ul class="fit-list">
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Sua empresa já possui um <b>produto ou serviço validado</b>, mas precisa gerar mais oportunidades.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Você investe em marketing, mas sente que <b>os resultados poderiam ser melhores</b>.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Seu comercial precisa receber <b>mais contatos com potencial de compra</b>.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Você recebe leads, mas <b>muitos chegam sem perfil</b>.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Você não consegue identificar claramente <b>quais campanhas estão contribuindo para as vendas</b>.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Sua empresa depende excessivamente de indicação, prospecção manual ou relacionamento para gerar novos clientes.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Você quer transformar o digital em um <b>canal mais consistente e previsível de aquisição</b>.</li>
+      <li class="rv"><span class="fit-check"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span>
+        Você deseja tomar decisões de marketing com base em <b>dados comerciais</b>, não apenas métricas de vaidade.</li>
+    </ul>
+
+    <div class="manifesto rv">
+      <h3>Marketing não deve terminar no clique.</h3>
+      <div class="nem">Nem no acesso.<br>Nem no formulário.<br>Nem no lead.</div>
+      <div class="frase">Ele precisa contribuir para gerar oportunidades de negócio.</div>
+      <p>O Método VQC existe para aproximar marketing e comercial e construir uma visão mais clara sobre toda a jornada — <b>da primeira interação até a conversão.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 05 · DIAGNÓSTICO ======================= -->
+<section class="sec-diag" id="diagnostico-info">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="kick rv"><b>05</b> &nbsp;·&nbsp; Diagnóstico ARGOS</div>
+    <h2 class="sec rv">Descubra onde sua empresa está perdendo oportunidades.</h2>
+    <p class="lead rv">
+      Antes de simplesmente aumentar o investimento em mídia ou iniciar novas campanhas, buscamos
+      entender o cenário atual da sua aquisição. Analisamos pontos como:
+    </p>
+
+    <div class="diag-grid">
+      <div class="diag-q rv"><div class="qn">01</div><p>Existe demanda pelo que sua empresa oferece?</p></div>
+      <div class="diag-q rv"><div class="qn">02</div><p>Sua empresa está aparecendo para essa demanda?</p></div>
+      <div class="diag-q rv"><div class="qn">03</div><p>Quem está capturando essas oportunidades hoje?</p></div>
+      <div class="diag-q rv"><div class="qn">04</div><p>Os contatos gerados possuem o perfil desejado?</p></div>
+      <div class="diag-q rv"><div class="qn">05</div><p>Quantos realmente avançam no processo comercial?</p></div>
+      <div class="diag-q rv"><div class="qn">06</div><p>Quais canais estão trazendo as melhores oportunidades?</p></div>
+      <div class="diag-q rv"><div class="qn">07</div><p>Onde os potenciais clientes estão sendo perdidos?</p></div>
+      <div class="diag-q rv"><div class="qn">08</div><p>Marketing e comercial usam os mesmos dados para decidir?</p></div>
+    </div>
+
+    <div class="diag-fecho rv">
+      <p>A partir dessa análise, identificamos <b>gargalos, oportunidades e possíveis caminhos de crescimento</b> para a aquisição digital da sua empresa.</p>
+      <a href="form.html" class="btn btn-green">Quero receber meu diagnóstico <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CTA FINAL ======================= -->
+<section class="sec-cta" id="cta">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="cta-wrap">
+      <div class="cta-main rv">
+        <div class="cta-brandline">ARGOS · Marketing orientado a negócios</div>
+        <h2>Mais leads não significam necessariamente mais vendas.</h2>
+        <p>O que importa é gerar demanda, entender <b>quem possui potencial</b>, identificar <b>o que gera oportunidades</b> e investir melhor no que contribui para o crescimento comercial.</p>
+        <p>Sua empresa já possui produto, serviço, experiência, estrutura e capacidade de entrega. A ARGOS trabalha para fazer o mercado encontrar essa estrutura e transformar atenção em <b>oportunidades reais de negócio</b>.</p>
+        <a href="form.html" class="btn btn-grad">Quero aplicar o VQC na minha empresa <span class="arw">→</span></a>
+      </div>
+
+      <div class="flow rv">
+        <div class="flow-tag">Método VQC</div>
+        <div class="flow-sub">Marketing com começo, meio e objetivo comercial.</div>
+        <div class="flow-step f1"><i class="ln"></i><div class="flow-dot">V</div>
+          <h4>Volume</h4><p>Geramos demanda e dados suficientes para compreender melhor o mercado.</p></div>
+        <div class="flow-step f2"><i class="ln"></i><div class="flow-dot">Q</div>
+          <h4>Qualificação</h4><p>Identificamos quais oportunidades possuem maior aderência ao negócio.</p></div>
+        <div class="flow-step f3"><div class="flow-dot">C</div>
+          <h4>Conversão</h4><p>Direcionamos a estratégia para aquilo que demonstra maior potencial comercial.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONVITE AO FORMULÁRIO ======================= -->
+<section class="sec-form" id="diagnostico">
+  <div class="mesh"></div>
+  <div class="container">
+    <div class="form-wrap rv">
+      <div class="form-tag">Diagnóstico ARGOS</div>
+      <h2>Fale com um especialista da ARGOS</h2>
+      <p class="form-sub">
+        Responda algumas perguntas rápidas sobre o momento atual da sua empresa. A partir dessas
+        informações, analisamos o cenário e identificamos oportunidades para tornar sua aquisição
+        digital mais estratégica.
+      </p>
+      <a href="form.html" class="btn btn-grad">Começar meu diagnóstico <span class="arw">→</span></a>
+      <p class="ff-lgpd">
+        Rápido, gratuito e sem compromisso de contratação.<br>
+        Seus dados são utilizados apenas para preparar o diagnóstico e realizar o contato da ARGOS, de acordo com a LGPD.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div>
+      <div class="foot-brandrow">
+        <img class="foot-mark" src="assets/argos-mark.png" alt="" width="223" height="420">
+        <div class="foot-brand">ARGOS</div>
+      </div>
+      <p>Marketing orientado a oportunidades de negócio · Método VQC</p>
+      <p>© <span id="yr">2026</span> ARGOS. Todos os direitos reservados.</p>
+    </div>
+    <div class="foot-vqc"><span>Volume</span><span>Qualificação</span><span>Conversão</span></div>
+  </div>
+</footer>
+
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+/* O reveal só é armado quando há suporte a IntersectionObserver.
+   Sem JS, ou sem suporte, o conteúdo nasce visível. */
+if ('IntersectionObserver' in window) document.documentElement.className += ' reveal';
+
+(function(){
+  'use strict';
+  var docEl = document.documentElement;
+  var els   = [].slice.call(document.querySelectorAll('.rv'));
+  var REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  function revealAll(){
+    docEl.classList.add('reveal-off');
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* Rede de segurança: age só sobre o que já está na primeira dobra. */
+  function safetyNet(delay){
+    setTimeout(function(){
+      els.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (parseFloat(getComputedStyle(el).opacity) < 0.05 && r.top < window.innerHeight){
+          el.style.transition='none'; el.style.opacity=1; el.style.transform='none';
+          el.style.visibility='visible'; el.classList.add('in');
+        }
+      });
+    }, delay);
+  }
+
+  function initGSAP(){
+    gsap.registerPlugin(ScrollTrigger);
+    docEl.classList.add('gsap-on');
+    gsap.defaults({ ease:'power3.out' });
+
+    var inHero = [].slice.call(document.querySelectorAll('.hero .rv'));
+    var ownRun = [].slice.call(document.querySelectorAll('.vqc-block'));
+    var batched = els.filter(function(el){
+      return inHero.indexOf(el) === -1 && ownRun.indexOf(el) === -1;
+    });
+
+    gsap.timeline()
+      .fromTo('.hero .eyebrow', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.40})
+      .fromTo('.hero h1 .l1',
+        {autoAlpha:0,y:14,clipPath:'inset(0 0 100% 0)'},
+        {autoAlpha:1,y:0,clipPath:'inset(0 0 0% 0)',duration:0.50}, '-=0.24')
+      .fromTo('.hero h1 .l2',
+        {autoAlpha:0,y:18,clipPath:'inset(0 0 100% 0)'},
+        {autoAlpha:1,y:0,clipPath:'inset(0 0 0% 0)',duration:0.60}, '-=0.40')
+      .fromTo('.hero-sub', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.45,stagger:0.07}, '-=0.42')
+      .fromTo('.vqc-rail', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.45}, '-=0.32')
+      .fromTo('.vqc-rail .bar', {scaleX:0}, {scaleX:1,duration:0.50,stagger:0.08,ease:'power2.out'}, '-=0.30')
+      .fromTo('.hero-card', {autoAlpha:0,y:24}, {autoAlpha:1,y:0,duration:0.60}, '-=0.70')
+      .fromTo('.hero-selos', {autoAlpha:0,y:16}, {autoAlpha:1,y:0,duration:0.50}, '-=0.40')
+      .fromTo('.hero-selos .selo', {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.40,stagger:0.08}, '-=0.38');
+
+    ScrollTrigger.batch(batched, {
+      start:'top 88%', once:true,
+      onEnter:function(b){
+        gsap.fromTo(b, {autoAlpha:0,y:22}, {autoAlpha:1,y:0,duration:0.55,stagger:0.06,overwrite:true});
+      }
+    });
+
+    gsap.utils.toArray('.vqc-block').forEach(function(b){
+      var st = { trigger:b, start:'top 78%', once:true };
+      gsap.fromTo(b, {autoAlpha:0,y:24}, {autoAlpha:1,y:0,duration:0.55,scrollTrigger:st});
+      gsap.fromTo(b.querySelector('.edge'), {scaleY:0},
+        {scaleY:1,duration:0.75,delay:0.10,ease:'power2.inOut',scrollTrigger:st});
+      gsap.fromTo(b.querySelector('.vqc-letra'),
+        {autoAlpha:0,scale:0.78,filter:'blur(7px)'},
+        {autoAlpha:1,scale:1,filter:'blur(0px)',duration:0.65,delay:0.06,scrollTrigger:st});
+      gsap.fromTo(b.querySelectorAll('.vqc-tit, h3, p'),
+        {autoAlpha:0,y:12}, {autoAlpha:1,y:0,duration:0.4,stagger:0.035,delay:0.16,
+        ease:'power2.out',scrollTrigger:st});
+    });
+
+    gsap.utils.toArray('.flow-step').forEach(function(step,i){
+      var st = { trigger:'.flow', start:'top 78%', once:true };
+      gsap.fromTo(step, {autoAlpha:0,x:-16}, {autoAlpha:1,x:0,duration:0.5,delay:i*0.15,scrollTrigger:st});
+      var ln = step.querySelector('.ln');
+      if (ln) gsap.fromTo(ln, {scaleY:0}, {scaleY:1,duration:0.5,delay:i*0.15+0.3,ease:'none',scrollTrigger:st});
+    });
+
+    ScrollTrigger.create({ start:0, end:'max',
+      onUpdate:function(self){ docEl.classList.toggle('scrolled', self.scroll() > 80); } });
+
+    /* Parallax só no desktop: mover elemento grande com máscara a cada
+       quadro engasga a rolagem no celular. */
+    var telaLarga = window.matchMedia('(min-width: 901px)').matches;
+    gsap.utils.toArray('.mesh').forEach(function(m){
+      var sec = m.closest('section');
+      if (!sec || !telaLarga) return;
+      gsap.fromTo(m, {yPercent:-5}, {yPercent:5, ease:'none',
+        scrollTrigger:{ trigger:sec, start:'top bottom', end:'bottom top', scrub:true }});
+    });
+
+    if (document.fonts && document.fonts.ready)
+      document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+    safetyNet(1400);
+  }
+
+  function initFallback(){
+    if (!('IntersectionObserver' in window)) { revealAll(); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e,i){
+        if (!e.isIntersecting) return;
+        setTimeout(function(){ e.target.classList.add('in'); }, Math.min(i*70,280));
+        io.unobserve(e.target);
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+    safetyNet(1200);
+  }
+
+  function ligarAnimacao(){
+    if (REDUCE)                                   revealAll();
+    else if (window.gsap && window.ScrollTrigger)  initGSAP();
+    else                                           initFallback();
+  }
+  /* Os scripts do GSAP são defer: executam antes do DOMContentLoaded,
+     então aqui já existem — e o parser não ficou parado esperando. */
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', ligarAnimacao);
+  else ligarAnimacao();
+})();
+</script>
+</body>
+</html>

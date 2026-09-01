@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagnóstico ARGOS — Marketing orientado a negócios</title>
+<meta name="description" content="Descubra onde sua empresa está perdendo oportunidades. Responda 6 perguntas e receba o diagnóstico da ARGOS.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fontes sem bloquear a primeira pintura: o navegador baixa como "print"
+     (nao bloqueia) e promove para "all" ao terminar. Como o CSS ja pede
+     display=swap, o texto aparece na fonte de sistema e troca depois. -->
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+      onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"></noscript>
+<style>
+:root{
+  --ink:#0A0A0A; --ink-2:#0F0F11; --card:#121212; --card-2:#161618;
+  --line:#292929; --fg:#FAFAFA; --muted:#A6A6A6; --muted-2:#8A8A8A;
+  --blue:#1A05FF; --blue-lt:#6A57FF; --green:#1FEF49;
+  --grad:linear-gradient(135deg,#1A05FF 0%,#1FEF49 100%);
+  --grad-txt:linear-gradient(120deg,#7C6BFF 0%,#1FEF49 100%);
+  --r:14px; --r-sm:10px;
+  --display:'Archivo','Helvetica Neue',sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--ink);-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body);font-size:17px;line-height:1.6;color:var(--fg);
+  background:var(--ink);-webkit-font-smoothing:antialiased;
+  min-height:100dvh;display:flex;flex-direction:column;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+h1,h2,h3,.display{font-family:var(--display);font-weight:800;line-height:1.06;letter-spacing:-.025em}
+
+/* ---------- atmosfera ---------- */
+.fundo{position:fixed;inset:0;z-index:0;pointer-events:none}
+.fundo::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(26,5,255,.26), transparent 62%),
+    radial-gradient(ellipse 55% 50% at 88% 100%, rgba(31,239,73,.10), transparent 62%);
+}
+.fundo::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.026) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.026) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%, #000 25%, transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%, #000 25%, transparent 78%);
+}
+
+/* ---------- barra de progresso ---------- */
+.barra{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.07);z-index:40}
+.barra i{display:block;height:100%;width:0;background:var(--grad);transition:width .45s cubic-bezier(.2,.7,.3,1)}
+
+/* ---------- topo ---------- */
+.topo{
+  position:relative;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 28px;
+}
+.marca{display:flex;align-items:center;gap:11px}
+.marca img{height:26px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(26,5,255,.45))}
+.marca span{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.14em;text-transform:uppercase}
+.contador{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted-2)}
+.contador b{color:var(--green);font-weight:500}
+
+/* ---------- palco ---------- */
+.palco{
+  position:relative;z-index:10;flex:1;
+  display:flex;align-items:center;
+  padding:24px 28px 40px;
+}
+.tela{width:100%;max-width:620px;margin:0 auto}
+
+.passo-tag{
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--green);
+  display:inline-flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.passo-tag::before{content:'';width:26px;height:1px;background:var(--grad)}
+
+.pergunta{font-size:clamp(26px,4.2vw,40px);margin-bottom:14px}
+.pergunta .req{color:var(--green);font-size:.5em;vertical-align:super;margin-left:4px}
+.ajuda{font-size:15.5px;font-weight:300;color:var(--muted);margin-bottom:30px;max-width:52ch}
+
+/* ---------- campo de texto ---------- */
+.campo{position:relative;margin-bottom:8px}
+.campo input,.campo textarea{
+  width:100%;background:transparent;border:0;
+  border-bottom:2px solid rgba(31,239,73,.28);
+  padding:12px 2px;font-size:clamp(19px,2.4vw,23px);font-weight:300;
+  transition:border-color .2s ease;
+}
+.campo textarea{resize:none;min-height:110px;font-size:19px;line-height:1.5}
+.campo input::placeholder,.campo textarea::placeholder{color:#4F4F4F}
+.campo input:focus,.campo textarea:focus{outline:none;border-bottom-color:var(--green)}
+.campo.erro input,.campo.erro textarea{border-bottom-color:#E5484D}
+.prefixo{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:19px;color:var(--muted-2);
+}
+.prefixo input{flex:1}
+
+/* ---------- opções ---------- */
+.opcoes{display:grid;gap:10px;margin-bottom:10px}
+.opcao{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:rgba(255,255,255,.02);cursor:pointer;text-align:left;width:100%;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.opcao:hover{border-color:rgba(31,239,73,.5);background:rgba(31,239,73,.05);transform:translateX(3px)}
+.opcao .letra{
+  flex-shrink:0;width:32px;height:32px;border-radius:8px;
+  display:grid;place-items:center;
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);
+  transition:background .18s ease,color .18s ease,border-color .18s ease;
+}
+.opcao:hover .letra{background:rgba(31,239,73,.14);color:var(--green);border-color:rgba(31,239,73,.45)}
+.opcao .rotulo{font-size:16.5px;font-weight:400;line-height:1.35}
+.opcao.marcada{border-color:var(--green);background:rgba(31,239,73,.08)}
+.opcao.marcada .letra{background:var(--green);color:#06170B;border-color:var(--green)}
+
+/* ---------- erro ---------- */
+.msg-erro{
+  display:none;margin-top:12px;font-size:13.5px;color:#FF9A9D;
+  font-family:var(--mono);letter-spacing:.02em;
+}
+.msg-erro.ver{display:block}
+
+/* Modo denso: telas com 6+ opcoes nao cabem na altura de um notebook
+   (a de faturamento pedia 1000px numa janela de 860). Encolhe titulo,
+   apoio e altura das linhas — no celular o bloco @media aperta ainda mais. */
+.denso .pergunta{font-size:clamp(23px,2.8vw,31px);margin-bottom:10px}
+.denso .ajuda{font-size:14.5px;margin-bottom:20px}
+.denso .opcoes{gap:8px}
+.denso .opcao{padding:11px 18px}
+.denso .opcao .rotulo{font-size:16px}
+.denso .acoes{margin-top:20px}
+
+/* ---------- rodapé de ação ---------- */
+.acoes{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:11px;
+  font-family:var(--display);font-weight:700;font-size:15px;
+  letter-spacing:.04em;text-transform:uppercase;
+  padding:17px 30px;border-radius:12px;border:0;cursor:pointer;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s ease,opacity .2s ease;
+}
+.btn .arw{transition:transform .22s cubic-bezier(.2,.7,.3,1)}
+.btn:hover{transform:translateY(-3px)}
+.btn:hover .arw{transform:translateX(5px)}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 14px 38px -14px rgba(26,5,255,.8)}
+.btn-green{background:var(--green);color:#06170B;box-shadow:0 14px 38px -14px rgba(31,239,73,.7)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.link-voltar{
+  font-family:var(--mono);font-size:12px;color:var(--muted-2);
+  letter-spacing:.06em;text-decoration:underline;
+}
+.link-voltar:hover{color:var(--green)}
+.voltar{
+  display:inline-flex;align-items:center;gap:8px;background:none;border:0;
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted-2);cursor:pointer;padding:8px 0;transition:color .2s ease;
+}
+.voltar:hover{color:var(--green)}
+.voltar[hidden]{display:none}
+
+/* ---------- intro ---------- */
+.intro-tit{font-size:clamp(30px,5vw,50px);margin-bottom:18px;max-width:18ch}
+.intro-tit .hl{background:var(--grad-txt);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.intro-sub{font-size:17.5px;font-weight:300;color:var(--muted);max-width:56ch;margin-bottom:30px}
+.intro-lista{list-style:none;display:grid;gap:11px;margin-bottom:32px;max-width:52ch}
+.intro-lista li{
+  display:flex;gap:13px;align-items:flex-start;
+  font-size:16px;font-weight:300;color:var(--muted);line-height:1.5;
+}
+.intro-lista li .emo{
+  flex-shrink:0;font-size:19px;line-height:1.35;width:26px;text-align:center;
+}
+.intro-lista li b{color:var(--fg);font-weight:500}
+
+/* linha de corte: quem serve e quem nao serve */
+.intro-qualif{
+  display:flex;gap:13px;align-items:flex-start;
+  padding:18px 20px;margin-bottom:32px;max-width:56ch;
+  border:1px solid rgba(31,239,73,.26);border-left:3px solid var(--green);
+  border-radius:var(--r-sm);background:rgba(31,239,73,.05);
+  font-size:15.5px;font-weight:300;color:var(--muted);line-height:1.55;
+}
+.intro-qualif b{color:var(--fg);font-weight:500}
+.intro-qualif .seta{
+  flex-shrink:0;font-family:var(--mono);color:var(--green);font-size:16px;line-height:1.5;
+}
+.selo-tempo{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted-2);margin-top:20px;
+}
+.selo-tempo b{color:var(--fg);font-weight:500}
+
+/* ---------- encerramentos ---------- */
+.fim-ico{
+  width:64px;height:64px;border-radius:16px;display:grid;place-items:center;margin-bottom:26px;
+}
+.fim-ico.ok{background:rgba(31,239,73,.12);border:1px solid rgba(31,239,73,.42)}
+.fim-ico.neutro{background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.fim-ico svg{width:28px;height:28px;fill:none;stroke-width:2.4}
+.fim-ico.ok svg{stroke:var(--green)}
+.fim-ico.neutro svg{stroke:var(--muted)}
+.fim-tit{font-size:clamp(28px,4.4vw,42px);margin-bottom:16px;max-width:20ch}
+.fim-txt{font-size:17px;font-weight:300;color:var(--muted);max-width:56ch;margin-bottom:14px}
+.fim-txt b{color:var(--fg);font-weight:500}
+.fim-passos{
+  list-style:none;display:grid;gap:12px;margin:26px 0 30px;max-width:54ch;
+  padding:24px 26px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+}
+.fim-passos li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;font-weight:300;color:var(--muted);line-height:1.5}
+.fim-passos li b{display:block;color:var(--fg);font-weight:500;margin-bottom:2px;font-size:15px}
+.fim-passos .n{
+  flex-shrink:0;font-family:var(--mono);font-size:11.5px;font-weight:600;
+  color:var(--green);border:1px solid rgba(31,239,73,.35);border-radius:6px;
+  padding:3px 7px;margin-top:1px;
+}
+
+/* ---------- transições ---------- */
+.tela{opacity:1;transform:none;transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)}
+.tela.saindo{opacity:0;transform:translateY(-14px)}
+.tela.entrando{opacity:0;transform:translateY(16px)}
+@media (prefers-reduced-motion:reduce){
+  .tela,.tela.saindo,.tela.entrando{transition:none;opacity:1;transform:none}
+  .barra i{transition:none}
+}
+
+/* ---------- honeypot ---------- */
+.hp{position:absolute;left:-9999px;width:0;height:0;opacity:0}
+
+/* ---------- responsivo ---------- */
+@media (max-width:640px){
+  body{font-size:16px}
+  .topo{padding:16px 18px}
+  .marca span{font-size:15px}
+  .marca img{height:22px}
+  /* No celular a tela inteira e o palco: a pergunta ancora no topo e a acao
+     no rodape. Quando a lista de opcoes e longa, o margin-top:auto nao tem
+     folga para distribuir e o layout volta a se comportar normalmente. */
+  .palco{padding:8px 18px 22px;align-items:stretch}
+  .tela{display:flex;flex-direction:column;flex:1}
+  .acoes{margin-top:auto;padding-top:16px;margin-bottom:0;gap:14px}
+  .passo-tag{margin-bottom:12px}
+  .voltar{margin-top:4px}
+  .pergunta{font-size:29px;margin-bottom:12px}
+  .ajuda{font-size:15px;margin-bottom:26px}
+  .campo input{font-size:20px;padding:14px 2px}
+  .campo textarea{font-size:18px;min-height:130px}
+  .opcoes{gap:9px}
+  .opcao{padding:13px 15px;gap:13px}
+  .denso .pergunta{font-size:24px;margin-bottom:10px}
+  .denso .ajuda{font-size:13.5px;margin-bottom:18px}
+  .denso .opcoes{gap:8px}
+  .denso .opcao{padding:11px 14px}
+  .denso .opcao .rotulo{font-size:15.5px}
+  /* precisa repetir o auto: .denso .acoes tem especificidade maior que .acoes */
+  .denso .acoes{margin-top:auto;padding-top:12px}
+  .opcao .letra{width:30px;height:30px;font-size:12.5px}
+  .opcao .rotulo{font-size:16px}
+  .btn{width:100%;font-size:15px;padding:19px 22px}
+  /* alvos de toque com pelo menos 44px de altura */
+  .voltar{padding:14px 0;min-height:44px}
+  .marca{padding:6px 0}
+  .fim-passos{padding:20px 18px}
+  .intro-tit{font-size:27px}
+  .intro-lista{gap:9px;margin-bottom:24px}
+  .intro-lista li{font-size:13.5px;gap:10px;line-height:1.45}
+  .intro-lista li .emo{font-size:16px;width:20px}
+  .intro-qualif{padding:14px 15px;font-size:13.5px;gap:10px;margin-bottom:26px}
+  .intro-qualif .seta{font-size:14px}
+  .selo-tempo{font-size:11px;margin-top:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="fundo" aria-hidden="true"></div>
+<div class="barra"><i id="progresso"></i></div>
+
+<header class="topo">
+  <a class="marca" href="index.html">
+    <img src="assets/argos-mark.png" alt="" width="223" height="420">
+    <span>Argos</span>
+  </a>
+  <div class="contador" id="contador"></div>
+</header>
+
+<main class="palco">
+  <div class="tela" id="tela" role="group" aria-live="polite"></div>
+</main>
+
+<input type="text" class="hp" id="hp" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+<script>
+(function(){
+'use strict';
+
+/* ==========================================================================
+   CONFIGURAÇÃO
+   ========================================================================== */
+var ENDPOINT = '';   // TODO: webhook do n8n desta LP. Vazio = o lead NAO e capturado.
+
+/* ==========================================================================
+   PERGUNTAS
+   Cada item: id, tipo, titulo, ajuda, opcoes, obrigatorio, pular(r)
+   `pular` recebe as respostas ate aqui e devolve true para saltar a pergunta.
+   ========================================================================== */
+var PERGUNTAS = [
+  { id:'nome', tipo:'texto', titulo:'Qual é o seu nome?',
+    ph:'Nome completo', obrigatorio:true,
+    validar:function(v){ return v.trim().length >= 2 || 'Informe seu nome.'; } },
+
+  { id:'email', tipo:'email', titulo:'Qual é o seu melhor e-mail?',
+    ph:'voce@suaempresa.com.br', obrigatorio:true,
+    validar:function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Confira o endereço de e-mail.'; } },
+
+  { id:'whatsapp', tipo:'tel', titulo:'Qual é o seu WhatsApp?',
+    ph:'(11) 90000-0000', obrigatorio:true,
+    validar:function(v){ return v.replace(/\D/g,'').length >= 10 || 'Informe um número válido com DDD.'; } },
+
+  { id:'segmento', tipo:'texto', titulo:'Qual é o segmento da sua empresa?',
+    ajuda:'Ex.: serviços, indústria, varejo, saúde, tecnologia, educação, construção etc.',
+    ph:'Digite o segmento', obrigatorio:true,
+    validar:function(v){ return v.trim().length >= 3 || 'Descreva o segmento em uma palavra que seja.'; } },
+
+  { id:'faturamento', tipo:'escolha', titulo:'Qual é o faturamento médio mensal da sua empresa?',
+    opcoes:[
+      {v:'Até R$ 15 mil', baixa:true},
+      {v:'De R$ 15 mil a R$ 30 mil'},
+      {v:'De R$ 30 mil a R$ 50 mil'},
+      {v:'De R$ 50 mil a R$ 100 mil'},
+      {v:'De R$ 100 mil a R$ 250 mil'},
+      {v:'De R$ 250 mil a R$ 500 mil'},
+      {v:'Acima de R$ 500 mil'}
+    ] },
+
+  { id:'prioridade', tipo:'escolha',
+    titulo:'Hoje, qual é a prioridade para aumentar as oportunidades comerciais da sua empresa?',
+    opcoes:[
+      {v:'Alta — Quero resolver isso agora'},
+      {v:'Média — Quero resolver nos próximos meses'},
+      {v:'Baixa — Estou apenas conhecendo possibilidades'}
+    ] }
+];
+
+/* ==========================================================================
+   ROTEAMENTO DOS ENCERRAMENTOS
+   ========================================================================== */
+function rotaFinal(r){
+  if (r.faturamento === 'Até R$ 15 mil')                             return 'cedo';
+  if (r.prioridade  === 'Baixa — Estou apenas conhecendo possibilidades') return 'conhecendo';
+  return 'ok';
+}
+
+var FINAIS = {
+  ok: {
+    icone:'ok',
+    titulo:'Sua empresa tem o perfil do Método VQC.',
+    texto:'Recebemos suas respostas. Um especialista da ARGOS já vai analisar o cenário de aquisição do seu segmento e devolver o diagnóstico pelo WhatsApp.',
+    passos:[
+      ['01','Análise do seu cenário','Verificamos se existe demanda pelo que sua empresa oferece e quem está capturando essas buscas hoje.'],
+      ['02','Diagnóstico pelo WhatsApp','Em até 1 dia útil, com os gargalos que encontramos entre o primeiro clique e a oportunidade.'],
+      ['03','Conversa de 30 minutos','Só se fizer sentido para os dois lados. Sem compromisso de contratação.']
+    ],
+    cta:'Conhecer o Método VQC', ctaClasse:'btn-green', href:'index.html#metodo'
+  },
+  cedo: {
+    icone:'neutro',
+    titulo:'Recebemos — e vamos ser diretos com você.',
+    texto:'Com faturamento até R$ 15 mil por mês, a verba que sobra para mídia normalmente não gera volume suficiente para a etapa de qualificação do VQC funcionar: os dados ficam escassos demais para separar o que vira negócio do que não vira. <b>Preferimos dizer isso agora a te vender um resultado que não viria.</b>',
+    passos:[
+      ['01','Vamos analisar mesmo assim','Se enxergarmos um caminho viável no seu segmento, entramos em contato.'],
+      ['02','Quando a operação crescer','Fale com a gente. O diagnóstico continua de pé, sem custo.']
+    ],
+    cta:'Voltar para o site', ctaClasse:'btn-grad', href:'index.html'
+  },
+  conhecendo: {
+    icone:'neutro',
+    titulo:'Perfeito. Sem pressa.',
+    texto:'Você marcou que está conhecendo possibilidades — então não vamos te ligar todo dia. Vamos analisar o cenário do seu segmento e, se houver algo útil para a sua empresa, mandamos pelo WhatsApp. <b>Quem decide o ritmo é você.</b>',
+    passos:[
+      ['01','Quando quiser avançar','É só responder quando entrarmos em contato — retomamos de onde parou, com o seu diagnóstico na mão.']
+    ],
+    cta:'Voltar para o site', ctaClasse:'btn-grad', href:'index.html'
+  }
+};
+
+/* ==========================================================================
+   ESTADO
+   ========================================================================== */
+var CHAVE  = 'argos_diag_v1';
+var estado = { i:-1, r:{} };                 // -1 = tela de abertura
+var enviado = false;
+
+try {
+  var salvo = JSON.parse(localStorage.getItem(CHAVE) || 'null');
+  if (salvo && salvo.r && !salvo.enviado) estado = { i:salvo.i, r:salvo.r };
+} catch(e){}
+
+function salvar(){
+  try { localStorage.setItem(CHAVE, JSON.stringify({ i:estado.i, r:estado.r, enviado:enviado })); } catch(e){}
+}
+
+/* Perguntas realmente aplicáveis, dado o que já foi respondido. */
+function visiveis(){
+  var lista = [], r = estado.r;
+  for (var k=0;k<PERGUNTAS.length;k++){
+    var p = PERGUNTAS[k];
+    if (p.pular && p.pular(r)) continue;
+    lista.push(k);
+  }
+  return lista;
+}
+function proximoIndice(de){
+  for (var k=de+1;k<PERGUNTAS.length;k++){
+    var p = PERGUNTAS[k];
+    if (p.pular && p.pular(estado.r)) continue;
+    return k;
+  }
+  return PERGUNTAS.length;
+}
+function anteriorIndice(de){
+  for (var k=de-1;k>=0;k--){
+    var p = PERGUNTAS[k];
+    if (p.pular && p.pular(estado.r)) continue;
+    return k;
+  }
+  return -1;
+}
+
+/* ==========================================================================
+   RENDER
+   ========================================================================== */
+var tela  = document.getElementById('tela');
+var prog  = document.getElementById('progresso');
+var cont  = document.getElementById('contador');
+var LETRAS = 'ABCDEFGH';
+
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+function atualizarTopo(){
+  var vis = visiveis();
+  if (estado.i < 0){ prog.style.width='0%'; cont.innerHTML=''; return; }
+  if (estado.i >= PERGUNTAS.length){ prog.style.width='100%'; cont.innerHTML=''; return; }
+  var pos = vis.indexOf(estado.i);
+  prog.style.width = Math.round(100 * pos / vis.length) + '%';
+  cont.innerHTML = '<b>' + String(pos+1).padStart(2,'0') + '</b> / ' + String(vis.length).padStart(2,'0');
+}
+
+var primeiraPintura = true;
+function pintar(html, foco){
+  /* Na carga inicial nao ha nada para "sair": pintar direto evita
+     180ms de tela vazia logo na abertura. */
+  if (primeiraPintura){
+    primeiraPintura = false;
+    tela.innerHTML = html;
+    atualizarTopo();
+    if (foco){
+      var i = tela.querySelector('input,textarea');
+      if (i && !('ontouchstart' in window)) i.focus();
+    }
+    return;
+  }
+  tela.classList.add('saindo');
+  setTimeout(function(){
+    tela.innerHTML = html;
+    tela.classList.remove('saindo');
+    tela.classList.add('entrando');
+    // força reflow para a transição de entrada valer
+    void tela.offsetWidth;
+    tela.classList.remove('entrando');
+    atualizarTopo();
+    if (foco){
+      var el = tela.querySelector('input,textarea');
+      if (el && !('ontouchstart' in window)) el.focus();
+    }
+  }, 180);
+}
+
+function telaIntro(){
+  estado.i = -1; salvar();
+  tela.classList.remove('denso');
+  pintar(
+    '<div class="passo-tag">Diagnóstico ARGOS</div>' +
+    '<h1 class="intro-tit">Descubra onde sua empresa está <span class="hl">perdendo oportunidades</span>.</h1>' +
+    '<ul class="intro-lista">' +
+      '<li><span class="emo">🎯</span><span>Atraímos pessoas com <b>intenção real de compra</b></span></li>' +
+      '<li><span class="emo">📈</span><span>Campanhas focadas em <b>geração de demanda</b></span></li>' +
+      '<li><span class="emo">✅</span><span>Estruturamos seu funil <b>do anúncio ao comercial</b></span></li>' +
+      '<li><span class="emo">📊</span><span>Decisões com base em <b>dados comerciais</b>, não em vaidade</span></li>' +
+    '</ul>' +
+    '<p class="intro-qualif"><span class="seta">→</span><span>Para empresas que querem transformar o digital em um ' +
+      '<b>canal previsível de oportunidades de negócio</b>.</span></p>' +
+    '<div class="acoes">' +
+      '<button class="btn btn-grad" id="comecar">Começar meu diagnóstico <span class="arw">→</span></button>' +
+    '</div>' +
+    '<div class="selo-tempo">⏱ Leva <b>menos de 1 minuto</b> · Gratuito e sem compromisso</div>'
+  , false);
+}
+
+function telaPergunta(){
+  var p = PERGUNTAS[estado.i];
+  var vis = visiveis();
+  var pos = vis.indexOf(estado.i);
+  var valor = estado.r[p.id] || '';
+  var corpo = '';
+
+  if (p.tipo === 'escolha'){
+    corpo += '<div class="opcoes" role="radiogroup" aria-label="' + esc(p.titulo) + '">';
+    for (var j=0;j<p.opcoes.length;j++){
+      var o = p.opcoes[j];
+      corpo += '<button type="button" class="opcao' + (valor===o.v?' marcada':'') + '" data-v="' + esc(o.v) + '" role="radio" aria-checked="' + (valor===o.v) + '">' +
+                 '<span class="letra">' + LETRAS[j] + '</span>' +
+                 '<span class="rotulo">' + esc(o.v) + '</span>' +
+               '</button>';
+    }
+    corpo += '</div>';
+  } else if (p.tipo === 'texto-longo'){
+    corpo += '<div class="campo"><textarea id="ent" placeholder="' + esc(p.ph||'') + '">' + esc(valor) + '</textarea></div>';
+  } else if (p.tipo === 'tel'){
+    corpo += '<div class="campo"><span class="prefixo">+55 <input id="ent" type="tel" inputmode="tel" placeholder="' + esc(p.ph||'') + '" value="' + esc(valor) + '"></span></div>';
+  } else {
+    var t = p.tipo === 'email' ? 'email' : 'text';
+    corpo += '<div class="campo"><input id="ent" type="' + t + '" placeholder="' + esc(p.ph||'') + '" value="' + esc(valor) + '"></div>';
+  }
+
+  var ehUltima = proximoIndice(estado.i) >= PERGUNTAS.length;
+  var rotulo = ehUltima ? 'Enviar respostas' : (p.obrigatorio === false && !valor ? 'Pular' : 'Continuar');
+
+  /* 6+ opcoes nao cabem numa tela de celular no tamanho normal:
+     a tela entra em modo denso e encolhe titulo, apoio e altura das linhas. */
+  tela.classList.toggle('denso', !!(p.opcoes && p.opcoes.length >= 6));
+
+  pintar(
+    '<div class="passo-tag">Pergunta ' + String(pos+1).padStart(2,'0') + '</div>' +
+    '<h2 class="pergunta">' + esc(p.titulo) + (p.obrigatorio!==false?'<span class="req">*</span>':'') + '</h2>' +
+    (p.ajuda ? '<p class="ajuda">' + p.ajuda + '</p>' : '') +
+    corpo +
+    '<div class="msg-erro" id="erro"></div>' +
+    '<div class="acoes">' +
+      '<button class="btn btn-grad" id="seguir">' + rotulo + ' <span class="arw">→</span></button>' +
+    '</div>' +
+    (anteriorIndice(estado.i) >= 0 || true
+      ? '<button class="voltar" id="voltar">← Voltar</button>' : '')
+  , p.tipo !== 'escolha');
+}
+
+function telaFinal(){
+  tela.classList.remove('denso');
+  var chave = rotaFinal(estado.r);
+  var f = FINAIS[chave];
+  estado.i = PERGUNTAS.length;
+  enviar(chave);
+
+  var passos = '';
+  if (f.passos && f.passos.length){
+    passos = '<ul class="fim-passos">';
+    for (var i=0;i<f.passos.length;i++){
+      passos += '<li><span class="n">' + f.passos[i][0] + '</span><span><b>' + f.passos[i][1] + '</b>' + f.passos[i][2] + '</span></li>';
+    }
+    passos += '</ul>';
+  }
+
+
+  pintar(
+    '<div class="fim-ico ' + f.icone + '">' +
+      (f.icone === 'ok'
+        ? '<svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg>'
+        : '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16"/></svg>') +
+    '</div>' +
+    '<h2 class="fim-tit">' + f.titulo + '</h2>' +
+    '<p class="fim-txt">' + f.texto + '</p>' +
+    passos +
+    '<div class="acoes">' +
+      '<a class="btn ' + f.ctaClasse + '" href="' + f.href + '">' + f.cta + ' <span class="arw">→</span></a>' +
+    '</div>'
+  , false);
+}
+
+function desenhar(){
+  if (estado.i < 0) return telaIntro();
+  if (estado.i >= PERGUNTAS.length) return telaFinal();
+  telaPergunta();
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO
+   ========================================================================== */
+function erro(txt){
+  var e = document.getElementById('erro');
+  var c = tela.querySelector('.campo');
+  if (c) c.classList.add('erro');
+  if (e){ e.textContent = txt; e.classList.add('ver'); }
+}
+function limparErro(){
+  var e = document.getElementById('erro');
+  var c = tela.querySelector('.campo');
+  if (c) c.classList.remove('erro');
+  if (e) e.classList.remove('ver');
+}
+
+function seguir(){
+  var p = PERGUNTAS[estado.i];
+  if (!p) return;
+
+  if (p.tipo === 'escolha'){
+    if (!estado.r[p.id]) return erro('Escolha uma das opções.');
+  } else {
+    var el = document.getElementById('ent');
+    var v  = el ? el.value.trim() : '';
+    if (!v && p.obrigatorio !== false) return erro('Esta pergunta é obrigatória.');
+    if (v && p.validar){
+      var ok = p.validar(v);
+      if (ok !== true) return erro(ok);
+    }
+    estado.r[p.id] = v;
+  }
+  limparErro();
+  estado.i = proximoIndice(estado.i);
+  salvar();
+  desenhar();
+}
+
+function voltar(){
+  if (estado.i <= 0) { telaIntro(); return; }
+  estado.i = anteriorIndice(estado.i);
+  salvar();
+  desenhar();
+}
+
+/* delegação de eventos: a tela é reconstruída a cada passo */
+tela.addEventListener('click', function(ev){
+  var op = ev.target.closest('.opcao');
+  if (op){
+    var p = PERGUNTAS[estado.i];
+    estado.r[p.id] = op.getAttribute('data-v');
+    var todas = tela.querySelectorAll('.opcao');
+    for (var i=0;i<todas.length;i++){
+      todas[i].classList.toggle('marcada', todas[i]===op);
+      todas[i].setAttribute('aria-checked', todas[i]===op);
+    }
+    limparErro();
+    salvar();
+    setTimeout(seguir, 260);       // avanço automático, como na referência
+    return;
+  }
+  if (ev.target.closest('#seguir'))  return seguir();
+  if (ev.target.closest('#voltar'))  return voltar();
+  if (ev.target.closest('#comecar')){ estado.i = proximoIndice(-1); salvar(); return desenhar(); }
+});
+
+tela.addEventListener('input', function(ev){
+  if (ev.target.id !== 'ent') return;
+  limparErro();
+  var p = PERGUNTAS[estado.i];
+  if (p && p.tipo === 'tel'){
+    var v = ev.target.value.replace(/\D/g,'').slice(0,11);
+    if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if (v.length > 0) v = '(' + v;
+    ev.target.value = v;
+  }
+});
+
+document.addEventListener('keydown', function(ev){
+  if (estado.i >= PERGUNTAS.length) return;
+
+  if (ev.key === 'Enter'){
+    var alvoLongo = document.activeElement && document.activeElement.tagName === 'TEXTAREA';
+    if (alvoLongo && !ev.ctrlKey && !ev.metaKey) return;   // Enter quebra linha no textarea
+    ev.preventDefault();
+    if (estado.i < 0){ estado.i = proximoIndice(-1); salvar(); return desenhar(); }
+    return seguir();
+  }
+
+  if (ev.key === 'Escape' && estado.i >= 0) return voltar();
+
+  var p = PERGUNTAS[estado.i];
+  if (p && p.tipo === 'escolha' && !ev.ctrlKey && !ev.metaKey && !ev.altKey){
+    var idx = LETRAS.indexOf(ev.key.toUpperCase());
+    if (idx >= 0 && idx < p.opcoes.length){
+      ev.preventDefault();
+      var alvo = tela.querySelectorAll('.opcao')[idx];
+      if (alvo) alvo.click();
+    }
+  }
+});
+
+/* ==========================================================================
+   ENVIO
+   ========================================================================== */
+function utms(){
+  var q = new URLSearchParams(location.search), o = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){
+    if (q.get(k)) o[k] = q.get(k);
+  });
+  return o;
+}
+
+function enviar(rota){
+  if (enviado) return;
+  if (document.getElementById('hp').value) return;      // armadilha de robô
+  enviado = true; salvar();
+
+  var dados = {};
+  for (var k in estado.r) dados[k] = estado.r[k];
+  dados.resultado   = rota;                              // ok | cedo | fora
+  dados.qualificado = (rota === 'ok');
+  dados.origem      = 'Diagnóstico ARGOS · Geral';
+  dados.url         = location.href;
+  dados.enviado_em  = new Date().toISOString();
+  var u = utms(); for (var m in u) dados[m] = u[m];
+
+  if (!ENDPOINT){ console.warn('[ARGOS] Sem ENDPOINT — o lead NAO foi enviado a lugar nenhum:', dados); return; }
+
+  var corpo = JSON.stringify(dados);
+
+  /* fetch com keepalive sobrevive a quem fecha a aba na tela final, igual
+     ao sendBeacon, com duas vantagens decisivas aqui:
+       - credentials:'omit' mantem a requisicao no CORS simples. O beacon
+         envia sempre com credenciais e exigiria do servidor o cabecalho
+         Access-Control-Allow-Credentials: true, que o n8n nao devolve —
+         o preflight falhava e o lead se perdia.
+       - devolve o status, entao da para registrar a falha em vez de
+         confiar num "enfileirei" que nao significa "entreguei". */
+  fetch(ENDPOINT, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:corpo,
+    keepalive:true,
+    credentials:'omit',
+    mode:'cors'
+  })
+  .then(function(r){
+    if (!r.ok) console.warn('[ARGOS] webhook respondeu', r.status);
+  })
+  .catch(function(e){
+    console.warn('[ARGOS] falha ao enviar o lead:', e);
+  });
+}
+
+/* ========================================================================== */
+desenhar();
+
+})();
+</script>
+</body>
+</html>
