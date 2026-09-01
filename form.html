@@ -371,38 +371,7 @@ function rotaFinal(r){
   return 'ok';
 }
 
-var FINAIS = {
-  ok: {
-    icone:'ok',
-    titulo:'Sua empresa tem o perfil do Método VQC.',
-    texto:'Recebemos suas respostas. Um especialista da ARGOS já vai analisar o cenário de aquisição do seu segmento e devolver o diagnóstico pelo WhatsApp.',
-    passos:[
-      ['01','Análise do seu cenário','Verificamos se existe demanda pelo que sua empresa oferece e quem está capturando essas buscas hoje.'],
-      ['02','Diagnóstico pelo WhatsApp','Em até 1 dia útil, com os gargalos que encontramos entre o primeiro clique e a oportunidade.'],
-      ['03','Conversa de 30 minutos','Só se fizer sentido para os dois lados. Sem compromisso de contratação.']
-    ],
-    cta:'Conhecer o Método VQC', ctaClasse:'btn-green', href:'index.html#metodo'
-  },
-  cedo: {
-    icone:'neutro',
-    titulo:'Recebemos — e vamos ser diretos com você.',
-    texto:'Com faturamento até R$ 15 mil por mês, a verba que sobra para mídia normalmente não gera volume suficiente para a etapa de qualificação do VQC funcionar: os dados ficam escassos demais para separar o que vira negócio do que não vira. <b>Preferimos dizer isso agora a te vender um resultado que não viria.</b>',
-    passos:[
-      ['01','Vamos analisar mesmo assim','Se enxergarmos um caminho viável no seu segmento, entramos em contato.'],
-      ['02','Quando a operação crescer','Fale com a gente. O diagnóstico continua de pé, sem custo.']
-    ],
-    cta:'Voltar para o site', ctaClasse:'btn-grad', href:'index.html'
-  },
-  conhecendo: {
-    icone:'neutro',
-    titulo:'Perfeito. Sem pressa.',
-    texto:'Você marcou que está conhecendo possibilidades — então não vamos te ligar todo dia. Vamos analisar o cenário do seu segmento e, se houver algo útil para a sua empresa, mandamos pelo WhatsApp. <b>Quem decide o ritmo é você.</b>',
-    passos:[
-      ['01','Quando quiser avançar','É só responder quando entrarmos em contato — retomamos de onde parou, com o seu diagnóstico na mão.']
-    ],
-    cta:'Voltar para o site', ctaClasse:'btn-grad', href:'index.html'
-  }
-};
+
 
 /* ==========================================================================
    ESTADO
@@ -566,35 +535,19 @@ function telaPergunta(){
 }
 
 function telaFinal(){
-  tela.classList.remove('denso');
   var chave = rotaFinal(estado.r);
-  var f = FINAIS[chave];
   estado.i = PERGUNTAS.length;
   enviar(chave);
 
-  var passos = '';
-  if (f.passos && f.passos.length){
-    passos = '<ul class="fim-passos">';
-    for (var i=0;i<f.passos.length;i++){
-      passos += '<li><span class="n">' + f.passos[i][0] + '</span><span><b>' + f.passos[i][1] + '</b>' + f.passos[i][2] + '</span></li>';
-    }
-    passos += '</ul>';
-  }
+  /* A pagina de obrigado le as respostas e a rota daqui. Gravamos antes
+     de sair para nao depender de query string na URL. */
+  try {
+    localStorage.setItem(CHAVE, JSON.stringify({
+      i: estado.i, r: estado.r, rota: chave, enviado: true
+    }));
+  } catch(e){}
 
-
-  pintar(
-    '<div class="fim-ico ' + f.icone + '">' +
-      (f.icone === 'ok'
-        ? '<svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg>'
-        : '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16"/></svg>') +
-    '</div>' +
-    '<h2 class="fim-tit">' + f.titulo + '</h2>' +
-    '<p class="fim-txt">' + f.texto + '</p>' +
-    passos +
-    '<div class="acoes">' +
-      '<a class="btn ' + f.ctaClasse + '" href="' + f.href + '">' + f.cta + ' <span class="arw">→</span></a>' +
-    '</div>'
-  , false);
+  location.href = 'obrigado.html';
 }
 
 function desenhar(){
