@@ -570,7 +570,14 @@ function telaFinal(){
     }));
   } catch(e){}
 
-  location.href = 'obrigado-lead-' + grauLead(estado.r.faturamento) + '.html';
+  var destino = 'obrigado-lead-' + grauLead(estado.r.faturamento) + '.html';
+  metaEvento('FormSubmit', {
+    origem: ORIGEM_META, lead_grade: grauLead(estado.r.faturamento).toUpperCase(),
+    faturamento: estado.r.faturamento || '', resultado: chave
+  });
+  /* A folga existe para a requisicao do pixel sair antes da navegacao.
+     Sem ela, o FormSubmit se perde em parte dos casos. */
+  setTimeout(function(){ location.href = destino; }, 300);
 }
 
 function desenhar(){
@@ -594,6 +601,32 @@ function limparErro(){
   if (c) c.classList.remove('erro');
   if (e) e.classList.remove('ver');
 }
+
+
+/* ==========================================================================
+     EVENTOS DO PIXEL
+     O pixel base (init + PageView) ja esta no <head> desta pagina.
+     Aqui vao so os dois eventos personalizados do funil do formulario.
+     ========================================================================== */
+  var ORIGEM_META = 'Diagnóstico ARGOS · Geral';
+
+  function metaEvento(nome, dados){
+    if (typeof window.fbq !== 'function') return;
+    try { window.fbq('trackCustom', nome, dados || {}); } catch(e){}
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: nome }, dados || {}));
+  }
+
+  var formIniciado = false;
+  function iniciarFormulario(){
+    if (!formIniciado){
+      formIniciado = true;
+      metaEvento('FormInit', { origem: ORIGEM_META, total_perguntas: PERGUNTAS.length });
+    }
+    estado.i = proximoIndice(-1);
+    salvar();
+    desenhar();
+  }
 
 function seguir(){
   var p = PERGUNTAS[estado.i];
@@ -644,7 +677,7 @@ tela.addEventListener('click', function(ev){
   }
   if (ev.target.closest('#seguir'))  return seguir();
   if (ev.target.closest('#voltar'))  return voltar();
-  if (ev.target.closest('#comecar')){ estado.i = proximoIndice(-1); salvar(); return desenhar(); }
+  if (ev.target.closest('#comecar')) return iniciarFormulario();
 });
 
 tela.addEventListener('input', function(ev){
@@ -667,7 +700,7 @@ document.addEventListener('keydown', function(ev){
     var alvoLongo = document.activeElement && document.activeElement.tagName === 'TEXTAREA';
     if (alvoLongo && !ev.ctrlKey && !ev.metaKey) return;   // Enter quebra linha no textarea
     ev.preventDefault();
-    if (estado.i < 0){ estado.i = proximoIndice(-1); salvar(); return desenhar(); }
+    if (estado.i < 0) return iniciarFormulario();
     return seguir();
   }
 
