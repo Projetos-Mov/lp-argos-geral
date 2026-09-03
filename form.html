@@ -303,6 +303,29 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none" alt=""
 src="https://www.facebook.com/tr?id=1068291045930479&ev=PageView&noscript=1"></noscript>
 <!-- End Meta Pixel -->
+<script>
+/* Guarda as UTMs assim que a pessoa chega. Sem isto elas se perdem: a
+   campanha aterrissa aqui e o formulario e outra URL, ja sem query. */
+(function(){
+  var CHAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+  try {
+    var q = new URLSearchParams(location.search), o = {}, achou = false;
+    CHAVES.forEach(function(k){ if (q.get(k)){ o[k] = q.get(k); achou = true; } });
+    if (achou){
+      o.landing  = location.origin + location.pathname;
+      o.referrer = document.referrer || '';
+      localStorage.setItem('argos_utm', JSON.stringify(o));
+    }
+  } catch(e){}
+  /* Repasse na propria URL do link, caso o localStorage esteja bloqueado. */
+  if (location.search){
+    document.addEventListener('DOMContentLoaded', function(){
+      var links = document.querySelectorAll('a[href="form.html"]');
+      for (var i=0;i<links.length;i++) links[i].href = 'form.html' + location.search;
+    });
+  }
+})();
+</script>
 </head>
 <body>
 
@@ -721,10 +744,16 @@ document.addEventListener('keydown', function(ev){
    ENVIO
    ========================================================================== */
 function utms(){
-  var q = new URLSearchParams(location.search), o = {};
-  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){
-    if (q.get(k)) o[k] = q.get(k);
-  });
+  var CHAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+  var o = {};
+  /* 1. o que a LP guardou quando a pessoa chegou pelo anuncio */
+  try {
+    var g = JSON.parse(localStorage.getItem('argos_utm') || 'null');
+    if (g) for (var k in g) o[k] = g[k];
+  } catch(e){}
+  /* 2. a URL desta pagina tem prioridade, se trouxer algo */
+  var q = new URLSearchParams(location.search);
+  CHAVES.forEach(function(k){ if (q.get(k)) o[k] = q.get(k); });
   return o;
 }
 
